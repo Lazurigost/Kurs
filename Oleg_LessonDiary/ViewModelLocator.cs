@@ -1,6 +1,14 @@
-﻿namespace Oleg_LessonDiary
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Oleg_LessonDiary
 {
-    public internal class ViewModelLocator
+    internal class ViewModelLocator
     {
+        
+
+        public static void Init()
+        {
+            var builder = new ConfigurationBuilder
+        }
     }
 }

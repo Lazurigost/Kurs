@@ -5,3 +5,5 @@ global using System.Windows.Controls;
 global using MaterialDesignThemes.Wpf;
 global using MaterialDesignColors;
 global using Oleg_LessonDiary.Services;
+global using Microsoft.Extensions.Configuration;
+global using System.IO;
