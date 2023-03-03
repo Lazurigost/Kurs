@@ -12,7 +12,62 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <local:ViewModelLocator/>
+            <local:ViewModelLocator x:Key="ViewModelLocator"/>
+
+            <Color x:Key="ldPrimaryColor">#ffffff</Color>
+
+            <SolidColorBrush x:Key="ldPrimaryBg" Color="{StaticResource ldPrimaryColor}"/>
+
+            <FontFamily x:Key="ldFont">Comic Sans MS</FontFamily>
+
+            <Style x:Key="ButtonToText"
+                   TargetType="{x:Type Button}">
+                <Setter Property="Foreground"
+                        Value="White"/>
+                <Setter Property="Padding"
+                        Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="border"
+                                    BorderThickness="0"
+                                    Background="Transparent">
+                                <ContentPresenter Margin="2"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Top"
+                                                  RecognizesAccessKey="True"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter Property="Opacity"
+                                            Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ldTextBox"
+                   TargetType="{x:Type TextBox}"
+                   BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <Setter Property="Foreground"
+                        Value="Black"/>
+                <Setter Property="Margin"
+                        Value="0 20 0 0"/>
+                <Setter Property="FontFamily"
+                        Value="{StaticResource ldFont}"/>
+            </Style>
+
+            <Style x:Key="ldComboBox"
+                   TargetType="{x:Type ComboBox}"
+                   BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <Setter Property="Foreground"
+                        Value="Black"/>
+                <Setter Property="FontFamily"
+                        Value="{StaticResource ldFont}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
