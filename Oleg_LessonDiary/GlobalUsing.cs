@@ -4,3 +4,4 @@ global using System;
 global using System.Windows.Controls;
 global using MaterialDesignThemes.Wpf;
 global using MaterialDesignColors;
+global using Oleg_LessonDiary.Services;
