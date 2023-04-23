@@ -6,9 +6,44 @@
       xmlns:local="clr-namespace:Oleg_LessonDiary.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SignUpPage">
+      Title="SignUpPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      DataContext="{Binding SignUpPageViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top">
+            <TextBlock Text="Логин:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
+                     Text="{Binding UserLogin}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Пароль:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
+                     Text="{Binding UsersPassword}"/>
+        </WrapPanel>
+
+        <Button Grid.Row="2" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Content="Войти"
+                Command="{Binding SignUpCommand}"/>
     </Grid>
 </Page>

@@ -6,18 +6,9 @@
         xmlns:local="clr-namespace:Oleg_LessonDiary.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="LessonDiary" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        
-    </Grid>
+        Title="LessonDiary" Height="450" Width="800"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Frame Content="{Binding PageSource}"
+           NavigationUIVisibility="Hidden"/>
 </Window>
