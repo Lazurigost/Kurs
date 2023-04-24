@@ -21,8 +21,8 @@ namespace Oleg_LessonDiary
 
             #region ViewModels
             services.AddTransient<MainWindowViewModel>();
-            services.AddTransient<SignInPageViewModel>();
             services.AddTransient<SignUpPageViewModel>();
+            services.AddTransient<SignInPageViewModel>();
             #endregion
             
             #region Contexts

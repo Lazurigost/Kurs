@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Oleg_LessonDiary.Views"
-      mc:Ignorable="d"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SignInPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       DataContext="{Binding SignInPageViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
@@ -15,25 +15,20 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
+                   VerticalAlignment="Top">
             <TextBlock Text="Логин:"
                        FontFamily="{StaticResource ldFont}"
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
             <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
-                     Text="{Binding User_login}"/>
+                     Text="{Binding UserLogin}"/>
         </WrapPanel>
-        <WrapPanel Grid.Row="2"
+        <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
             <TextBlock Text="Пароль:"
@@ -42,60 +37,19 @@
                        VerticalAlignment="Center"
                        />
             <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
-                     Text="{Binding User_password}"/>
+                     Text="{Binding UsersPassword}"/>
         </WrapPanel>
-        <WrapPanel Grid.Row="3"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-            <TextBlock Text="Фамилия:"
-                       FontFamily="{StaticResource ldFont}"
-                       Margin="0,0,20,0"
-                       VerticalAlignment="Center"
-                       />
-            <TextBox materialDesign:HintAssist.Hint="Введите вашу фамилию"
-                     Text="{Binding User_password}"/>
-        </WrapPanel>
-        <WrapPanel Grid.Row="4"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-            <TextBlock Text="Имя:"
-                       FontFamily="{StaticResource ldFont}"
-                       Margin="0,0,20,0"
-                       VerticalAlignment="Center"
-                       />
-            <TextBox materialDesign:HintAssist.Hint="Введите ваше имя"
-                     Text="{Binding User_password}"/>
-        </WrapPanel>
-        <WrapPanel Grid.Row="5"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-            <TextBlock Text="Отчество:"
-                       FontFamily="{StaticResource ldFont}"
-                       Margin="0,0,20,0"
-                       VerticalAlignment="Center"
-                       />
-            <TextBox materialDesign:HintAssist.Hint="Введите ваше отчество"
-                     Text="{Binding User_password}"/>
-        </WrapPanel>
-        <WrapPanel Grid.Row="6"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-            <TextBlock Text="Дата рождения:"
-                       FontFamily="{StaticResource ldFont}"
-                       Margin="0,0,20,0"
-                       VerticalAlignment="Center"
-                       />
-            <DatePicker/>
-        </WrapPanel>
-        <WrapPanel Grid.Row="7"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top">
-            <TextBlock Text="Тип гитары:"
-                       FontFamily="{StaticResource ldFont}"
-                       Margin="0,0,20,0"
-                       VerticalAlignment="Center"
-                       />
-            <ComboBox ></ComboBox>
-        </WrapPanel>
+
+        <StackPanel Grid.Row="2">
+            <Button VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Content="Войти"
+                Command="{Binding SignInCommand}"/>
+            <Button HorizontalAlignment="Center"
+                    Content="Зарегистрироваться"
+                    Margin="0,15,0,0"
+                    Command="{Binding GoToSignUpCommand}"/>
+        </StackPanel>
+        
     </Grid>
 </Page>

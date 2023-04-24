@@ -35,5 +35,13 @@ namespace Oleg_LessonDiary.Services
             }
             return false;
         }
+        public async void SignUp(User user)
+        {
+            User userdb = user;
+            userdb.IdUsers = _context.Users.Max(u => u.IdUsers) + 1;
+            
+            await _context.Users.AddAsync(userdb);
+            await _context.SaveChangesAsync();
+        }
     }
 }

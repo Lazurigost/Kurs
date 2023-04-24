@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Oleg_LessonDiary.Views"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SignUpPage"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       DataContext="{Binding SignUpPageViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
@@ -15,20 +15,25 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Top">
+                   VerticalAlignment="Center">
             <TextBlock Text="Логин:"
                        FontFamily="{StaticResource ldFont}"
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
             <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
-                     Text="{Binding UserLogin}"/>
+                     Text="{Binding User_login}"/>
         </WrapPanel>
-        <WrapPanel Grid.Row="1"
+        <WrapPanel Grid.Row="2"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
             <TextBlock Text="Пароль:"
@@ -37,13 +42,60 @@
                        VerticalAlignment="Center"
                        />
             <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
-                     Text="{Binding UsersPassword}"/>
+                     Text="{Binding User_password}"/>
         </WrapPanel>
-
-        <Button Grid.Row="2" 
-                VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Content="Войти"
-                Command="{Binding SignUpCommand}"/>
+        <WrapPanel Grid.Row="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Фамилия:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <TextBox materialDesign:HintAssist.Hint="Введите вашу фамилию"
+                     Text="{Binding User_surname}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="4"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Имя:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <TextBox materialDesign:HintAssist.Hint="Введите ваше имя"
+                     Text="{Binding User_name}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="5"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Отчество:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <TextBox materialDesign:HintAssist.Hint="Введите ваше отчество"
+                     Text="{Binding User_patronymics}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <TextBlock Text="Дата рождения:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <DatePicker SelectedDate="{Binding User_datebirth}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="7"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top">
+            <TextBlock Text="Тип гитары:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <ComboBox SelectedIndex="{Binding User_guitar}"></ComboBox>
+        </WrapPanel>
     </Grid>
 </Page>

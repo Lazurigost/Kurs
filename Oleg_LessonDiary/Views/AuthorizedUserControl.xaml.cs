@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Oleg_LessonDiary.Views
 {
     /// <summary>
-    /// Логика взаимодействия для SignInPage.xaml
+    /// Логика взаимодействия для AuthorizedUserControl.xaml
     /// </summary>
-    public partial class SignInPage : Page
+    public partial class AuthorizedUserControl : UserControl
     {
-        public SignInPage()
+        public AuthorizedUserControl()
         {
             InitializeComponent();
         }
