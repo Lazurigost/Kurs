@@ -1,10 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using DevExpress.Mvvm.Native;
-using Microsoft.Extensions.Options;
-using System.ComponentModel.DataAnnotations;
-
-namespace Oleg_LessonDiary.ViewModels
+﻿namespace Oleg_LessonDiary.ViewModels
 {
     partial class SignUpPageViewModel : ObservableValidator
     {

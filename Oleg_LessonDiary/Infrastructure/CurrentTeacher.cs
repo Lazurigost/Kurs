@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Oleg_LessonDiary.Infrastructure
 {
-    internal class CurrentTeacher
+    internal static class CurrentTeacher
     {
+        public static Teacher CurTeacher { get; set; }
     }
 }

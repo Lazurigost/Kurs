@@ -1,8 +1,6 @@
-﻿using Oleg_LessonDiary.Infrastructure;
+﻿using Oleg_LessonDiary.Data;
+using Oleg_LessonDiary.Infrastructure;
 using Oleg_LessonDiary.Models.DbEntities;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Oleg_LessonDiary.Services
 {
     internal class UserService
