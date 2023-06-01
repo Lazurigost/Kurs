@@ -1,4 +1,5 @@
 ﻿using Oleg_LessonDiary.Infrastructure;
+using Oleg_LessonDiary.Models.DbEntities;
 using System.Linq;
 using System.Threading.Tasks;
 

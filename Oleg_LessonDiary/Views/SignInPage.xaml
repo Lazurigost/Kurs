@@ -28,6 +28,7 @@
             <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
                      Text="{Binding UserLogin}"/>
         </WrapPanel>
+
         <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
@@ -39,6 +40,8 @@
             <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
                      Text="{Binding UsersPassword}"/>
         </WrapPanel>
+
+
 
         <StackPanel Grid.Row="2">
             <Button VerticalAlignment="Top"

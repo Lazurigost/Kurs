@@ -39,6 +39,8 @@ namespace Oleg_LessonDiary.ViewModels
         {
             _userService = userService;
             _pageService = pageService;
+
+            User_datebirth = DateTime.Now;
         }
         [RelayCommand]
         private void SignUp()

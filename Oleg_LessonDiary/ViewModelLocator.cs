@@ -1,11 +1,4 @@
-﻿using DevExpress.Mvvm.POCO;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Oleg_LessonDiary.ViewModels;
-using Oleg_LessonDiary.Services;
-using System.Configuration;
-
-namespace Oleg_LessonDiary
+﻿namespace Oleg_LessonDiary
 {
     internal class ViewModelLocator
     {
@@ -15,8 +8,9 @@ namespace Oleg_LessonDiary
             ServiceCollection services = new ServiceCollection();
             
             #region Services
-            services.AddSingleton<PageService>();
-            services.AddSingleton<UserService>();
+            services.AddScoped<PageService>();
+            services.AddTransient<UserService>();
+            services.AddTransient<GuitarService>();
             #endregion
 
             #region ViewModels
