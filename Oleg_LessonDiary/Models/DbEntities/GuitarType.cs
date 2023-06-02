@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Oleg_LessonDiary.Models.DbEntities;
+namespace Oleg_LessonDiary;
 
 public partial class GuitarType
 {
-    public int IdType { get; set; }
+    public int IdGuitarType { get; set; }
 
     public string TypeName { get; set; } = null!;
 

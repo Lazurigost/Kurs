@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Oleg_LessonDiary.Models.DbEntities;
+namespace Oleg_LessonDiary;
 
 public partial class Journal
 {
-    public int IdJournal { get; set; }
+    public int LessonId { get; set; }
 
     public DateOnly LessonDate { get; set; }
 
-    public string? LessonDecription { get; set; }
+    public string? LessonDescription { get; set; }
 
-    public int IdUser { get; set; }
+    public int JournalUserId { get; set; }
 
-    public int IdTecher { get; set; }
+    public int JournalTeacherId { get; set; }
 
-    public virtual Teacher IdTecherNavigation { get; set; } = null!;
+    public virtual Teacher JournalTeacher { get; set; } = null!;
 
-    public virtual User IdUserNavigation { get; set; } = null!;
+    public virtual User JournalUser { get; set; } = null!;
 }

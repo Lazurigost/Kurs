@@ -4,8 +4,9 @@
     {
         private readonly UserService _userService;
         private readonly PageService _pageService;
+        private readonly TeacherService _teacherService;
 
-        #region Свойства
+        #region User свойства
         [ObservableProperty]
         [Required(ErrorMessage ="Заполните поле")]
         private string user_login;
@@ -29,17 +30,42 @@
         private int user_guitar;
         #endregion
 
-        public SignUpPageViewModel(UserService userService, PageService pageService)
+        #region Teacher свойства
+        [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
+        private string teacher_login;
+        [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
+        private string teacher_password;
+        [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
+        private string teacher_surname;
+        [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
+        private string teacher_name;
+        [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
+        private string teacher_patronymics;
+        [ObservableProperty]
+        private bool teacher_qual_check;
+        [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
+        private int teacher_direction;
+        #endregion
+
+        public SignUpPageViewModel(UserService userService, PageService pageService, TeacherService teacherService)
         {
             _userService = userService;
             _pageService = pageService;
+            _teacherService = teacherService;
 
             User_datebirth = DateTime.Now;
+            
         }
         [RelayCommand]
-        private void SignUp()
+        private void UserSignUp()
         {
-            ValidateAllProperties();
+            ValidateProperty(User_name);
 
             if (HasErrors == false)
             {
@@ -54,6 +80,11 @@
                 });
                 _pageService.ChangePage(new SignInPage());
             }
+        }
+        [RelayCommand]
+        private void TeacherSignUp()
+        {
+            
         }
     }
 }

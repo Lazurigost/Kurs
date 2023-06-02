@@ -1,6 +1,4 @@
-﻿using Oleg_LessonDiary.Models.DbEntities;
-
-namespace Oleg_LessonDiary.Services
+﻿namespace Oleg_LessonDiary.Services
 {
     public class GuitarService
     {

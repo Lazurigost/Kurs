@@ -10,49 +10,58 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       DataContext="{Binding SignInPageViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <TabControl>
+        <TabItem Header="Ученик">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-        <WrapPanel Grid.Row="1"
+                <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top">
-            <TextBlock Text="Логин:"
+                    <TextBlock Text="Логин:"
                        FontFamily="{StaticResource ldFont}"
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
-            <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
+                    <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
                      Text="{Binding UserLogin}"/>
-        </WrapPanel>
+                </WrapPanel>
 
-        <WrapPanel Grid.Row="1"
+                <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
-            <TextBlock Text="Пароль:"
+                    <TextBlock Text="Пароль:"
                        FontFamily="{StaticResource ldFont}"
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
-            <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
+                    <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
                      Text="{Binding UsersPassword}"/>
-        </WrapPanel>
+                </WrapPanel>
 
 
 
-        <StackPanel Grid.Row="2">
-            <Button VerticalAlignment="Top"
+                <StackPanel Grid.Row="2">
+                    <Button VerticalAlignment="Top"
                 HorizontalAlignment="Center"
                 Content="Войти"
                 Command="{Binding SignInCommand}"/>
-            <Button HorizontalAlignment="Center"
+                    <Button HorizontalAlignment="Center"
                     Content="Зарегистрироваться"
                     Margin="0,15,0,0"
                     Command="{Binding GoToSignUpCommand}"/>
-        </StackPanel>
-        
-    </Grid>
+                </StackPanel>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Учитель">
+            
+        </TabItem>
+    </TabControl>
+    
+    
 </Page>

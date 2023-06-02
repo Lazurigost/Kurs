@@ -1,7 +1,4 @@
-﻿using Oleg_LessonDiary.Data;
-using Oleg_LessonDiary.Infrastructure;
-using Oleg_LessonDiary.Models.DbEntities;
-namespace Oleg_LessonDiary.Services
+﻿namespace Oleg_LessonDiary.Services
 {
     internal class UserService
     {

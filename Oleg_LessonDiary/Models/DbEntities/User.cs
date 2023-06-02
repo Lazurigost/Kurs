@@ -1,4 +1,7 @@
-﻿namespace Oleg_LessonDiary.Models.DbEntities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Oleg_LessonDiary;
 
 public partial class User
 {
@@ -8,11 +11,11 @@ public partial class User
 
     public string UsersPassword { get; set; } = null!;
 
-    public string UserName { get; set; } = null!;
+    public string? UserSurname { get; set; }
 
-    public string UserSurname { get; set; } = null!;
+    public string? UserName { get; set; }
 
-    public string UserPatronymics { get; set; } = null!;
+    public string? UserPatronymics { get; set; }
 
     public DateOnly UserDatebirth { get; set; }
 
