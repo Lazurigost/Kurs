@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Oleg_LessonDiary.Views
+namespace Oleg_LessonDiary.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AuthorizedUserControl.xaml
+    /// Логика взаимодействия для TeacherStartupPage.xaml
     /// </summary>
-    public partial class AuthorizedUserControl : UserControl
+    public partial class TeacherStartupPage : Page
     {
-        public AuthorizedUserControl()
+        public TeacherStartupPage()
         {
             InitializeComponent();
         }

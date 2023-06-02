@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Oleg_LessonDiary.Models.DbEntities;
 
-public partial class Direction
+public partial class Degree
 {
-    public int IdDirection { get; set; }
+    public int IdDegree { get; set; }
 
-    public string DirectionName { get; set; } = null!;
+    public string DegreeName { get; set; } = null!;
 
     public virtual ICollection<Teacher> Teachers { get; } = new List<Teacher>();
 }

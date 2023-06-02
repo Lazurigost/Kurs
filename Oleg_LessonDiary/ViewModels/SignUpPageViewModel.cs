@@ -47,7 +47,7 @@
         [Required(ErrorMessage = "Заполните поле")]
         private string teacher_patronymics;
         [ObservableProperty]
-        private bool teacher_qual_check;
+        private int teacher_qual_check;
         [ObservableProperty]
         [Required(ErrorMessage = "Заполните поле")]
         private int teacher_direction;
@@ -65,7 +65,15 @@
         [RelayCommand]
         private void UserSignUp()
         {
-            ValidateProperty(User_name);
+            #region Валидации
+            ValidateProperty(User_login, nameof(User_login));
+            ValidateProperty(User_password, nameof(User_password));
+            ValidateProperty(User_surname, nameof(User_surname));
+            ValidateProperty(User_name, nameof(User_name));
+            ValidateProperty(User_patronymics, nameof(User_patronymics));
+            ValidateProperty(User_datebirth, nameof(User_datebirth));
+            ValidateProperty(User_guitar, nameof(User_guitar));
+            #endregion
 
             if (HasErrors == false)
             {
@@ -84,7 +92,27 @@
         [RelayCommand]
         private void TeacherSignUp()
         {
-            
+            #region Валидации
+            ValidateProperty(Teacher_login, nameof(Teacher_login));
+            ValidateProperty(Teacher_password, nameof(Teacher_password));
+            ValidateProperty(Teacher_surname, nameof(Teacher_surname));
+            ValidateProperty(Teacher_name, nameof(Teacher_name));
+            ValidateProperty(Teacher_patronymics, nameof(Teacher_patronymics));
+            ValidateProperty(Teacher_direction, nameof(Teacher_direction));
+            #endregion
+            if (HasErrors == false)
+            {
+                _teacherService.SignUp(new Teacher
+                {
+                    TrLogin = Teacher_login,
+                    TrPassword = Teacher_password,
+                    TrName = Teacher_name,
+                    TrSurname = Teacher_surname,
+                    TrPatronymics = Teacher_patronymics,
+                    TrDegree = Teacher_qual_check,
+                    TrDirection = Teacher_direction
+                });
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Oleg_LessonDiary;
+namespace Oleg_LessonDiary.Data;
 
 public partial class OdinsonlearnContext : DbContext
 {
@@ -14,6 +14,8 @@ public partial class OdinsonlearnContext : DbContext
         : base(options)
     {
     }
+
+    public virtual DbSet<Degree> Degrees { get; set; }
 
     public virtual DbSet<Direction> Directions { get; set; }
 
@@ -34,6 +36,20 @@ public partial class OdinsonlearnContext : DbContext
         modelBuilder
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
+
+        modelBuilder.Entity<Degree>(entity =>
+        {
+            entity.HasKey(e => e.IdDegree).HasName("PRIMARY");
+
+            entity.ToTable("degrees");
+
+            entity.Property(e => e.IdDegree)
+                .ValueGeneratedNever()
+                .HasColumnName("id_degree");
+            entity.Property(e => e.DegreeName)
+                .HasMaxLength(45)
+                .HasColumnName("degree_name");
+        });
 
         modelBuilder.Entity<Direction>(entity =>
         {
@@ -92,12 +108,12 @@ public partial class OdinsonlearnContext : DbContext
 
             entity.ToTable("teacher");
 
+            entity.HasIndex(e => e.TrDegree, "tr_degree_fk_idx");
+
             entity.HasIndex(e => e.TrDirection, "tr_direction_fk_idx");
 
             entity.Property(e => e.IdTeacher).HasColumnName("id_teacher");
-            entity.Property(e => e.TrDegree)
-                .HasMaxLength(30)
-                .HasColumnName("tr_degree");
+            entity.Property(e => e.TrDegree).HasColumnName("tr_degree");
             entity.Property(e => e.TrDirection).HasColumnName("tr_direction");
             entity.Property(e => e.TrLogin)
                 .HasMaxLength(50)
@@ -114,6 +130,10 @@ public partial class OdinsonlearnContext : DbContext
             entity.Property(e => e.TrSurname)
                 .HasMaxLength(45)
                 .HasColumnName("tr_surname");
+
+            entity.HasOne(d => d.TrDegreeNavigation).WithMany(p => p.Teachers)
+                .HasForeignKey(d => d.TrDegree)
+                .HasConstraintName("tr_degree_fk");
 
             entity.HasOne(d => d.TrDirectionNavigation).WithMany(p => p.Teachers)
                 .HasForeignKey(d => d.TrDirection)

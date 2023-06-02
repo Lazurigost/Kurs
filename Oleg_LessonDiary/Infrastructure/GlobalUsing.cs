@@ -1,6 +1,7 @@
 ﻿global using DevExpress.Mvvm;
 global using Oleg_LessonDiary.Views;
 global using System;
+global using Oleg_LessonDiary.Views.Pages;
 global using Oleg_LessonDiary.Data;
 global using System.Windows.Controls;
 global using Oleg_LessonDiary.Models.DbEntities;

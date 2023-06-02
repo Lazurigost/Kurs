@@ -27,7 +27,7 @@
             {
                 if (await _userService.Authorization(userLogin, usersPassword) == true)
                 {
-                    _pageService.ChangePage(new UserStartupPage());
+                    await Application.Current.Dispatcher.InvokeAsync(async () => _pageService.ChangePage(new UserStartupPage()));
                 }
                 else
                 {
