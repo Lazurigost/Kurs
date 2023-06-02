@@ -23,6 +23,7 @@
             services.AddTransient<AuthorizedUserControlViewModel>();
             services.AddTransient<TeacherUserControlViewModel>();
             services.AddTransient<UserStartupPageViewModel>();
+            services.AddTransient<UserChangeLessonViewModel>();
             #endregion
             
             #region Contexts
@@ -48,5 +49,6 @@
         public AuthorizedUserControlViewModel AuthorizedUserControlViewModel => _provider.GetRequiredService<AuthorizedUserControlViewModel>();
         public TeacherUserControlViewModel TeacherUserControlViewModel => _provider.GetRequiredService<TeacherUserControlViewModel>();
         public UserStartupPageViewModel UserStartupPageViewModel => _provider.GetRequiredService<UserStartupPageViewModel>();
+        public UserChangeLessonViewModel UserChangeLessonViewModel => _provider.GetRequiredService<UserChangeLessonViewModel>();
     }
 }

@@ -32,5 +32,15 @@ namespace Oleg_LessonDiary.Services
             await _context.Journals.AddAsync(lesson);
             await _context.SaveChangesAsync();
         }
+        public async void ChangeLesson(Journal journal)
+        {
+            Journal newJournal = await _context.Journals.Where(j => j.LessonId == journal.LessonId).FirstOrDefaultAsync();
+            
+            if (newJournal != null)
+            {
+                newJournal.LessonDate = journal.LessonDate;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

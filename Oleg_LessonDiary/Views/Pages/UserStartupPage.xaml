@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Oleg_LessonDiary.Views.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:usercontrols ="clr-namespace:Oleg_LessonDiary.Views.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserStartupPage"
@@ -17,21 +18,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.75*"
-                              Name="ColumnWidth"/>
+            <ColumnDefinition Width="0.75*"/>
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Запланированные уроки:"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"/>
+        <!--<usercontrols:AuthorizedUserControl Grid.Column="1"
+                                            Margin="5,10,5,5"
+                                            Grid.RowSpan="2"/>-->
         <ListView Grid.Row="1"
                   Grid.Column="0"
                   VerticalAlignment="Top"
                   HorizontalContentAlignment="Center"
                   SelectedItem="{Binding SelectedPlan}"
                   ItemsSource="{Binding UserLessons}"
-                  SelectionMode="Single">
+                  SelectionMode="Single"
+                  Name="ColumnWidth">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -52,7 +56,7 @@
                               VerticalAlignment="Center"
                               HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -90,5 +94,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <!--<Grid Grid.Column="1"
+              Grid.Row="1">
+            
+        </Grid>-->
     </Grid>
 </Page>
