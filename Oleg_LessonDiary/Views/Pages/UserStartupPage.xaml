@@ -95,9 +95,14 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!--<Grid Grid.Column="1"
+        <Grid Grid.Column="1"
               Grid.Row="1">
-            
-        </Grid>-->
+            <StackPanel>
+                <Image/>
+                <TextBlock/>
+                <Button Content="Редактировать"/>
+                <Button Content=""/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
