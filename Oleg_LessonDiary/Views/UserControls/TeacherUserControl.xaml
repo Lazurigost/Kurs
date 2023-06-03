@@ -6,9 +6,38 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Oleg_LessonDiary.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding TeacherUserControlViewModel, Source={StaticResource ViewModelLocator}}">
-    <Grid>
-            
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+
+        </Style>
+    </UserControl.Style>
+    <Grid Height="auto"
+          Width="auto">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                                        >
+            <TextBlock Text="{Binding Teacher_fullname}"
+                       TextWrapping="Wrap"
+                       FontSize="14"
+                       Margin="0,2"/>
+        </StackPanel>
+
+        <Button Grid.Row="0"
+                MinHeight="20"
+                MinWidth="70"
+                Content="Выйти"
+                Margin="10,0,10,0"
+                MaxWidth="100"
+                Command="{Binding LogOutCommand}" 
+                Cursor="Hand"
+                IsCancel="True"/>
     </Grid>
 </UserControl>
