@@ -12,7 +12,8 @@
       DataContext="{Binding SignUpPageViewModel, Source={StaticResource ViewModelLocator}}">
 
     <TabControl>
-        <TabItem Header="Ученик">
+        <TabItem Header="Ученик"
+                 x:Name="tabUserUp">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -24,10 +25,11 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Content="назад"
+                <Button Content="Назад"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
-                        Command="{Binding GoToSignInCommand}"/>
+                        Command="{Binding GoToSignInCommand}"
+                        IsCancel="True"/>
                 <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
@@ -118,7 +120,8 @@
                         Command="{Binding UserSignUpCommand}"/>
             </Grid>
         </TabItem>
-        <TabItem Header="Учитель">
+        <TabItem Header="Учитель"
+                 x:Name="tabTeacherUp">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -130,10 +133,11 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Content="назад"
+                <Button Content="Назад"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
-                        Command="{Binding GoToSignInCommand}"/>
+                        Command="{Binding GoToSignInCommand}"
+                        IsCancel="True"/>
                 <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
@@ -212,7 +216,6 @@
                                  Command="{Binding CheckQualCommand}"
                                  CommandParameter="3"/>
                 </WrapPanel>
-                <TextBlock />
                 <WrapPanel Grid.Row="7"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top">

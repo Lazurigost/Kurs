@@ -11,7 +11,8 @@
       DataContext="{Binding SignInPageViewModel, Source={StaticResource ViewModelLocator}}">
 
     <TabControl>
-        <TabItem Header="Ученик">
+        <TabItem Header="Ученик"
+                 x:Name="tabInUser">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -47,9 +48,9 @@
 
                 <StackPanel Grid.Row="2">
                     <Button VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Content="Войти"
-                Command="{Binding SignInCommand}"/>
+                            HorizontalAlignment="Center"
+                            Content="Войти"
+                            Command="{Binding SignInCommand}"/>
                     <Button HorizontalAlignment="Center"
                     Content="Зарегистрироваться"
                     Margin="0,15,0,0"
@@ -59,7 +60,51 @@
             </Grid>
         </TabItem>
         <TabItem Header="Учитель">
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <WrapPanel Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top">
+                    <TextBlock Text="Логин:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+                    <TextBox materialDesign:HintAssist.Hint="Введите ваш логин"
+                     Text="{Binding TeacherLogin}"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                    <TextBlock Text="Пароль:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+                    <TextBox materialDesign:HintAssist.Hint="Введите ваш пароль"
+                     Text="{Binding TeacherPassword}"/>
+                </WrapPanel>
+
+
+
+                <StackPanel Grid.Row="2">
+                    <Button VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            Content="Войти"
+                            Command="{Binding TeacherSignInCommand}"/>
+                    <Button HorizontalAlignment="Center"
+                    Content="Зарегистрироваться"
+                    Margin="0,15,0,0"
+                    Command="{Binding GoToSignUpCommand}"/>
+                </StackPanel>
+
+            </Grid>
         </TabItem>
     </TabControl>
     

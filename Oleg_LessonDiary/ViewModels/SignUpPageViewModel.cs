@@ -132,8 +132,10 @@
             ValidateProperty(Teacher_surname, nameof(Teacher_surname));
             ValidateProperty(Teacher_name, nameof(Teacher_name));
             ValidateProperty(Teacher_patronymics, nameof(Teacher_patronymics));
+            ValidateProperty(Teacher_qual_check, nameof(Teacher_qual_check));
             ValidateProperty(Teacher_direction, nameof(Teacher_direction));
             #endregion
+            if (Teacher_qual_check != 0 && Teacher_direction != -1)
             if (HasErrors == false)
             {
 
@@ -145,7 +147,7 @@
                     TrSurname = Teacher_surname,
                     TrPatronymics = Teacher_patronymics,
                     TrDegree = Teacher_qual_check,
-                    TrDirection = Teacher_direction
+                    TrDirection = Teacher_direction + 1
                 });
                 _pageService.ChangePage(new SignInPage());
             }
