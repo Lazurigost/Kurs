@@ -15,7 +15,7 @@
 
             if (user != null) 
             {
-                CurrentUser.userSaved = new User
+                Global.user = new User
                 {
                     IdUsers = user.IdUsers,
                     UserLogin = user.UserLogin,

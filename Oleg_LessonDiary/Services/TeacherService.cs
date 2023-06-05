@@ -21,7 +21,7 @@ namespace Oleg_LessonDiary.Services
 
             if (teacher != null)
             {
-                CurrentTeacher.CurTeacher = new Teacher
+                Global.teacher = new Teacher
                 {
                     IdTeacher = teacher.IdTeacher,
                     TrLogin = teacher.TrLogin,

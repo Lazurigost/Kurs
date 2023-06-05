@@ -24,7 +24,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
+                <Button Content="назад"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Command="{Binding GoToSignInCommand}"/>
                 <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
@@ -98,7 +101,15 @@
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
-                    <ComboBox SelectedIndex="{Binding User_guitar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                    <ComboBox ItemsSource="{Binding GuitarList}"
+                              SelectedIndex="{Binding User_guitar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Выберите тип гитары">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TypeName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </WrapPanel>
                 <Button Grid.Row="7" 
                         VerticalAlignment="Center"
@@ -119,7 +130,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
+                <Button Content="назад"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Command="{Binding GoToSignInCommand}"/>
                 <WrapPanel Grid.Row="1"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
@@ -185,16 +199,20 @@
                        />
                     <TextBlock Text="Начальная:"/>
                     <RadioButton GroupName="Qual"
-                                IsChecked="{Binding Teacher_qual_check, Mode=OneWay}"/>
+                                 Command="{Binding CheckQualCommand}"
+                                 CommandParameter="1"/>
                     <TextBlock Text="Средняя:"
                                Margin="10,0,0,0"/>
                     <RadioButton GroupName="Qual"
-                                 IsChecked="{Binding Teacher_qual_check}"/>
+                                 Command="{Binding CheckQualCommand}"
+                                 CommandParameter="2"/>
                     <TextBlock Text="Высокая:"
                                Margin="10,0,0,0"/>
                     <RadioButton GroupName="Qual"
-                                 IsChecked="{Binding Teacher_qual_check}"/>
+                                 Command="{Binding CheckQualCommand}"
+                                 CommandParameter="3"/>
                 </WrapPanel>
+                <TextBlock />
                 <WrapPanel Grid.Row="7"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top">
@@ -203,7 +221,17 @@
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
-                    <ComboBox SelectedIndex="{Binding Teacher_direction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                    <ComboBox ItemsSource="{Binding DirectionsList}"
+                              SelectedIndex="{Binding Teacher_direction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Выберите стиль">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DirectionName}">
+
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </WrapPanel>
                 <Button Grid.Row="7" 
                         VerticalAlignment="Center"

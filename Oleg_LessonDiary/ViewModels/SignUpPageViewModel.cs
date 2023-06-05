@@ -5,6 +5,8 @@
         private readonly UserService _userService;
         private readonly PageService _pageService;
         private readonly TeacherService _teacherService;
+        private readonly DirectionsService _directionsService;
+        private readonly GuitarService _guitarService;
 
         #region User свойства
         [ObservableProperty]
@@ -28,6 +30,8 @@
         [ObservableProperty]
         [Required(ErrorMessage = "Заполните поле")]
         private int user_guitar;
+        [ObservableProperty]
+        private List<GuitarType> guitarList = new();
         #endregion
 
         #region Teacher свойства
@@ -47,21 +51,35 @@
         [Required(ErrorMessage = "Заполните поле")]
         private string teacher_patronymics;
         [ObservableProperty]
+        [Required(ErrorMessage = "Заполните поле")]
         private int teacher_qual_check;
         [ObservableProperty]
         [Required(ErrorMessage = "Заполните поле")]
         private int teacher_direction;
+        [ObservableProperty]
+        private List<Direction> directionsList = new();
         #endregion
 
-        public SignUpPageViewModel(UserService userService, PageService pageService, TeacherService teacherService)
+        public SignUpPageViewModel(UserService userService, PageService pageService, TeacherService teacherService, DirectionsService directionsService, GuitarService guitarService)
         {
             _userService = userService;
             _pageService = pageService;
             _teacherService = teacherService;
+            _directionsService = directionsService;
+            _guitarService = guitarService;
 
-            User_datebirth = DateTime.Now;
-            
+            UpdateAll();
         }
+
+        private async void UpdateAll()
+        {
+            User_datebirth = DateTime.Now;
+            DirectionsList = await _directionsService.GetDirectionsAsync();
+            GuitarList = await _guitarService.GetGuitarTypesAsync();
+            Teacher_direction = -1;
+            User_guitar = -1;
+        }
+
         [RelayCommand]
         private void UserSignUp()
         {
@@ -90,6 +108,22 @@
             }
         }
         [RelayCommand]
+        private void CheckQual(string parameter)
+        {
+            if (parameter == "1")
+            {
+                Teacher_qual_check = 1;
+            }
+            else if (parameter == "2") 
+            {
+                Teacher_qual_check = 2;
+            }
+            else
+            {
+                Teacher_qual_check = 3;
+            }
+        }
+        [RelayCommand]
         private void TeacherSignUp()
         {
             #region Валидации
@@ -102,6 +136,7 @@
             #endregion
             if (HasErrors == false)
             {
+
                 _teacherService.SignUp(new Teacher
                 {
                     TrLogin = Teacher_login,
@@ -112,7 +147,13 @@
                     TrDegree = Teacher_qual_check,
                     TrDirection = Teacher_direction
                 });
+                _pageService.ChangePage(new SignInPage());
             }
+        }
+        [RelayCommand]
+        private void GoToSignIn()
+        {
+            _pageService.ChangePage(new SignInPage());
         }
     }
 }

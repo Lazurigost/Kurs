@@ -16,14 +16,14 @@ namespace Oleg_LessonDiary.ViewModels
         public TeacherUserControlViewModel(PageService pageService)
         {
             _pageService = pageService;
-            if (CurrentUser.userSaved != null) 
+            if (Global.user != null) 
             {
-                Teacher_fullname = $"{CurrentUser.userSaved.UserSurname} {CurrentUser.userSaved.UserName} {CurrentUser.userSaved.UserPatronymics}";
+                Teacher_fullname = $"{Global.user.UserSurname} {Global.user.UserName} {Global.user.UserPatronymics}";
             }
-        }\\
+        }
         private void LogOut()
         {
-            CurrentUser.userSaved = null;
+            Global.user = null;
             _pageService.ChangePage(new SignInPage());
         }
     }

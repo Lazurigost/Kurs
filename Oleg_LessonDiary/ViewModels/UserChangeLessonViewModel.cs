@@ -11,6 +11,8 @@ namespace Oleg_LessonDiary.ViewModels
         private readonly PageService _pageService;
         private readonly JournalService _journalService;
 
+
+
         public UserChangeLessonViewModel(PageService pageService, JournalService journalService)
         {
             _pageService = pageService;
