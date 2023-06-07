@@ -9,6 +9,7 @@ namespace Oleg_LessonDiary.ViewModels
 {
     public partial class UserStartupPageViewModel : ObservableObject
     {
+        private readonly PageService _pageService;
         private readonly JournalService _journalService;
 
         [ObservableProperty]
@@ -16,8 +17,9 @@ namespace Oleg_LessonDiary.ViewModels
         [ObservableProperty]
         private Journal selectedPlan;
 
-        public UserStartupPageViewModel(JournalService journalService)
+        public UserStartupPageViewModel(PageService pageService,JournalService journalService)
         {
+            _pageService = pageService;
             _journalService = journalService;
 
             UpdateLists();
@@ -25,6 +27,12 @@ namespace Oleg_LessonDiary.ViewModels
         public async void UpdateLists()
         {
             UserLessons = await _journalService.GetAllJournalsAsync();
+        }
+        [RelayCommand]
+        private void EditLesson()
+        {
+            Global.journal = SelectedPlan;
+            _pageService.ChangePage(new UserChangeLesson());
         }
     }
 }

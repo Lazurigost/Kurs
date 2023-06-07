@@ -88,7 +88,8 @@
                                     MinWidth="170"
                                     MaxWidth="200"
                                     HorizontalAlignment="Right"
-                                    Content="Перенести занятие"/>
+                                    Content="Перенести занятие"
+                                    Command="{Binding DataContext.EditLessonCommand, RelativeSource={RelativeSource AncestorType=local:UserStartupPage}}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
