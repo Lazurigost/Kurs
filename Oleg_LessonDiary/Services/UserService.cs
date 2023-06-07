@@ -2,29 +2,29 @@
 {
     internal class UserService
     {
-        private readonly OdinsonlearnContext _context;
+        private readonly NewlearnContext _context;
 
-        public UserService(OdinsonlearnContext context)
+        public UserService(NewlearnContext context)
         {
             _context = context;
         }
 
         public async Task<bool> Authorization(string userLogin, string userPassword)
         {
-            User user = await _context.Users.Where(user => user.UserLogin == userLogin && user.UsersPassword == userPassword).SingleOrDefaultAsync();
+            User user = await _context.Users.Where(user => user.UsersLogin == userLogin && user.UsersPassword == userPassword).SingleOrDefaultAsync();
 
             if (user != null) 
             {
                 Global.user = new User
                 {
                     IdUsers = user.IdUsers,
-                    UserLogin = user.UserLogin,
+                    UsersLogin = user.UsersLogin,
                     UsersPassword = user.UsersPassword,
-                    UserName = user.UserName,
-                    UserSurname = user.UserSurname,
-                    UserPatronymics = user.UserPatronymics,
-                    UserDatebirth = user.UserDatebirth,
-                    IdType = user.IdType
+                    UsersName = user.UsersName,
+                    UsersSurname = user.UsersSurname,
+                    UsersPatronymics = user.UsersPatronymics,
+                    UsersDatebirth = user.UsersDatebirth,
+                    UsersRole = user.UsersRole
                 };
 
                 return true;

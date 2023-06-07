@@ -15,19 +15,10 @@
         [Required(ErrorMessage = "Заполните поле")]
         private string? usersPassword;
         #endregion
-        #region Teacher свойства
-        [ObservableProperty]
-        [Required(ErrorMessage = "Заполните поле")]
-        private string teacherLogin;
-        [ObservableProperty]
-        [Required(ErrorMessage = "Заполните поле")]
-        private string? teacherPassword;
-        #endregion
 
-        public SignInPageViewModel(UserService userService, PageService pageService, TeacherService teacherService)
+        public SignInPageViewModel(UserService userService, PageService pageService)
         {
             _userService = userService;
-            _teacherService = teacherService;
             _pageService = pageService;
         }
         #region Комманды
@@ -43,21 +34,6 @@
                 else
                 {
                     MessageBox.Show("Поражение");
-                }
-            });
-        }
-        [RelayCommand]
-        private async void TeacherSignIn()
-        {
-            await Task.Run(async () =>
-            {
-                if (await _teacherService.Authorization(TeacherLogin, TeacherPassword))
-                {
-                    MessageBox.Show("Ura pobeda");
-                }
-                else
-                {
-                    MessageBox.Show("Porazhenie");
                 }
             });
         }

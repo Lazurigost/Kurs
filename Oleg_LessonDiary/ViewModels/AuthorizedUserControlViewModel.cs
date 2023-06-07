@@ -10,6 +10,8 @@ namespace Oleg_LessonDiary.ViewModels
     {
         [ObservableProperty]
         private string? fullname;
+        [ObservableProperty]
+        private string? authRole;
 
         private readonly PageService _pageService;
 
@@ -18,7 +20,8 @@ namespace Oleg_LessonDiary.ViewModels
             _pageService = pageService;
             if (Global.user != null)
             {
-                Fullname = $"{Global.user.UserSurname} {Global.user.UserName} {Global.user.UserPatronymics}";
+                Fullname = $"{Global.user.UsersSurname} {Global.user.UsersName} {Global.user.UsersPatronymics}";
+                AuthRole = Global.user.UsersRole;
             }
         }
         [RelayCommand]

@@ -11,7 +11,7 @@
         {
             _pageService = pageService;
             _pageService.onPageChanged += (page) => PageSource = page;
-            _pageService.ChangePage(new SignUpPage());
+            _pageService.ChangePage(new SignInPage());
         }
     }
 }

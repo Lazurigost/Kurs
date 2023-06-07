@@ -7,21 +7,21 @@ public partial class User
 {
     public int IdUsers { get; set; }
 
-    public string UserLogin { get; set; } = null!;
+    public string UsersLogin { get; set; } = null!;
 
     public string UsersPassword { get; set; } = null!;
 
-    public string? UserSurname { get; set; }
+    public string? UsersName { get; set; }
 
-    public string? UserName { get; set; }
+    public string? UsersSurname { get; set; }
 
-    public string? UserPatronymics { get; set; }
+    public string? UsersPatronymics { get; set; }
 
-    public DateOnly UserDatebirth { get; set; }
+    public DateTime UsersDatebirth { get; set; }
 
-    public int IdType { get; set; }
+    public string UsersRole { get; set; } = null!;
 
-    public virtual GuitarType IdTypeNavigation { get; set; } = null!;
+    public virtual ICollection<Learnplan> Learnplans { get; } = new List<Learnplan>();
 
-    public virtual ICollection<Journal> Journals { get; } = new List<Journal>();
+    public virtual ICollection<Userssubsription> Userssubsriptions { get; } = new List<Userssubsription>();
 }

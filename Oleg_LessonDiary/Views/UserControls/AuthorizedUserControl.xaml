@@ -28,6 +28,10 @@
                        TextWrapping="Wrap"
                        FontSize="14"
                        Margin="0,2"/>
+            <TextBlock Text="{Binding AuthRole}"
+                       TextWrapping="Wrap"
+                       FontSize="14"
+                       FontWeight="Bold"/>
         </StackPanel>
 
         <Button Grid.Row="0"

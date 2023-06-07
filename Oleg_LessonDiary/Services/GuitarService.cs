@@ -2,15 +2,15 @@
 {
     public class GuitarService
     {
-        private readonly OdinsonlearnContext _context;
+        private readonly NewlearnContext _context;
 
-        public GuitarService(OdinsonlearnContext context)
+        public GuitarService(NewlearnContext context)
         {
             _context = context;
         }
-        public async Task<List<GuitarType>> GetGuitarTypesAsync()
+        public async Task<List<Guitar>> GetGuitarTypesAsync()
         {
-            List<GuitarType> types = await _context.GuitarTypes.ToListAsync();
+            List<Guitar> types = await _context.Guitars.ToListAsync();
             return types;
         }
     }

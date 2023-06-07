@@ -31,8 +31,11 @@ namespace Oleg_LessonDiary.ViewModels
         [RelayCommand]
         private void EditLesson()
         {
-            Global.journal = SelectedPlan;
-            _pageService.ChangePage(new UserChangeLesson());
+            if (SelectedPlan != null)
+            {
+                Global.journal = SelectedPlan;
+                _pageService.ChangePage(new UserChangeLesson());
+            }
         }
     }
 }

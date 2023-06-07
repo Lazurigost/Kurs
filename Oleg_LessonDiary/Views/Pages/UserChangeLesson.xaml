@@ -4,11 +4,69 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Oleg_LessonDiary.Views.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UserChangeLesson">
+      Title="UserChangeLesson"
+      DataContext="{Binding UserChangeLessonViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="30,30,0,0"
+                Content="Назад"
+                Command="{Binding GoBackCommand}"/>
+        <WrapPanel Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom">
+            <TextBlock Text="Дата занятия:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <DatePicker SelectedDate="{Binding UserDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="IsReadOnly" Value="True"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top">
+            <TextBlock Text="Учитель:"
+                       FontFamily="{StaticResource ldFont}"
+                       Margin="0,0,20,0"
+                       VerticalAlignment="Center"
+                       />
+            <ComboBox ItemsSource="{Binding TeachersList}"
+                      SelectedItem="{Binding UserTeacher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      materialDesign:HintAssist.Hint="Список учителей"
+                      SelectedIndex="{Binding UserTeacherId}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                    <Binding Path="TrSurname"/>
+                                    <Binding Path="TrName"/>
+                                    <Binding Path="TrPatronymics"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+        <Button Grid.Row="1"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Content="Применить изменения"
+                Command="{Binding ApplyChangesCommand}"/>
     </Grid>
 </Page>

@@ -8,8 +8,6 @@ namespace Oleg_LessonDiary.Infrastructure
 {
     public static class Global
     {
-        public static Journal? journal { get; set; } = null;
         public static User? user { get; set; } = null;
-        public static Teacher? teacher { get; set; } = null;
     }
 }
