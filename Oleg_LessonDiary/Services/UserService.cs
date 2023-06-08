@@ -43,7 +43,6 @@
             User userdb = user;
             userdb.IdUsers = _context.Users.Max(u => u.IdUsers) + 1;
             _context.Users.AddAsync(userdb);
-            await _context.SaveChangesAsync();
             if (qual != null)
             {
                 _context.Teachers.Add(new Teacher
