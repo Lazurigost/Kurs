@@ -90,7 +90,9 @@
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
-            <DatePicker SelectedDate="{Binding User_datebirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker SelectedDate="{Binding User_datebirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        DisplayDateEnd="{Binding Max_date}"
+                        materialDesign:HintAssist.Hint="Выебрите дату"/>
         </WrapPanel>
         <WrapPanel Grid.Row="7"
                    HorizontalAlignment="Center"
@@ -100,16 +102,29 @@
                        Margin="0,0,20,0"
                        VerticalAlignment="Center"
                        />
-            <ComboBox ItemsSource="{Binding GuitarList}"
-                              SelectedIndex="{Binding User_guitar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              materialDesign:HintAssist.Hint="Выберите тип гитары">
+            <TextBlock Text="Ученик"
+                       VerticalAlignment="Center"/>
+            <RadioButton VerticalAlignment="Center" 
+                         GroupName="Role"/>
+            <TextBlock Text="Учитель"
+                       VerticalAlignment="Center"/>
+            <RadioButton IsChecked="{Binding IsTeacher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         GroupName="Role"
+                         x:Name="radioBtn"
+                         VerticalAlignment="Center"/>
+            <ComboBox Visibility="{Binding IsChecked, ElementName=radioBtn, Converter={StaticResource b2v}}"
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding QualificationsList}"
+                      materialDesign:HintAssist.Hint="Выберите степень квалификации"
+                      SelectedIndex="{Binding QualIndex}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TypeName}"/>
+                        <TextBlock Text="{Binding QualificationsName}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </WrapPanel>
+        
         <Button Grid.Row="7" 
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"

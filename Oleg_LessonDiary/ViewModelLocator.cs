@@ -12,8 +12,7 @@
             services.AddTransient<UserService>();
             services.AddTransient<GuitarService>();
             services.AddTransient<TeacherService>();
-            services.AddTransient<DirectionsService>();
-            services.AddTransient<JournalService>();
+            services.AddTransient<QualificationService>();
             #endregion
 
             #region ViewModels
@@ -21,13 +20,11 @@
             services.AddTransient<SignUpPageViewModel>();
             services.AddTransient<SignInPageViewModel>();
             services.AddTransient<AuthorizedUserControlViewModel>();
-            services.AddTransient<TeacherUserControlViewModel>();
             services.AddTransient<UserStartupPageViewModel>();
-            services.AddTransient<UserChangeLessonViewModel>();
             #endregion
             
             #region Contexts
-            services.AddDbContext<OdinsonlearnContext>(options =>
+            services.AddDbContext<NewlearnContext>(options =>
             {
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["OdinsonlearnDatabase"].ConnectionString;
                 options.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
@@ -47,8 +44,6 @@
         public SignInPageViewModel SignInPageViewModel => _provider.GetRequiredService<SignInPageViewModel>();
         public SignUpPageViewModel SignUpPageViewModel => _provider.GetRequiredService<SignUpPageViewModel>();
         public AuthorizedUserControlViewModel AuthorizedUserControlViewModel => _provider.GetRequiredService<AuthorizedUserControlViewModel>();
-        public TeacherUserControlViewModel TeacherUserControlViewModel => _provider.GetRequiredService<TeacherUserControlViewModel>();
         public UserStartupPageViewModel UserStartupPageViewModel => _provider.GetRequiredService<UserStartupPageViewModel>();
-        public UserChangeLessonViewModel UserChangeLessonViewModel => _provider.GetRequiredService<UserChangeLessonViewModel>();
     }
 }

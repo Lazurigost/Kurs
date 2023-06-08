@@ -4,9 +4,8 @@
     {
         private readonly UserService _userService;
         private readonly PageService _pageService;
-        private readonly TeacherService _teacherService;
-        private readonly DirectionsService _directionsService;
         private readonly GuitarService _guitarService;
+        private readonly QualificationService _qualificationService;
 
         #region User свойства
         [ObservableProperty]
@@ -28,21 +27,33 @@
         [Required(ErrorMessage = "Заполните поле")]
         private DateTime user_datebirth;
         [ObservableProperty]
-        private string user_role;
+        private int user_role;
+        [ObservableProperty]
+        private bool isTeacher;
+        [ObservableProperty]
+        private DateTime max_date;
+        [ObservableProperty]
+        private List<Qualification> qualificationsList;
+        [ObservableProperty]
+        private int? qualIndex;
         #endregion
 
-        public SignUpPageViewModel(UserService userService, PageService pageService, GuitarService guitarService)
+        public SignUpPageViewModel(UserService userService, PageService pageService, GuitarService guitarService, QualificationService qualificationService)
         {
             _userService = userService;
             _pageService = pageService;
             _guitarService = guitarService;
+            _qualificationService = qualificationService;
 
             UpdateAll();
+            
         }
 
         private async void UpdateAll()
         {
-            User_datebirth = DateTime.Now;
+            QualificationsList = await _qualificationService.GetQualificationsAsync();
+            Max_date = DateTime.Now.AddYears(-16);
+            User_datebirth = Max_date;
         }
 
         [RelayCommand]
@@ -56,18 +67,40 @@
             ValidateProperty(User_patronymics, nameof(User_patronymics));
             ValidateProperty(User_datebirth, nameof(User_datebirth));
             #endregion
-
+            if (IsTeacher)
+            {
+                User_role = 1;
+            }
+            else
+            {
+                User_role = 2;
+            }
             if (HasErrors == false)
             {
-                _userService.SignUp(new User
+                if (IsTeacher)
                 {
-                    UsersLogin = User_login,
-                    UsersPassword = User_password,
-                    UsersName = User_name,
-                    UsersSurname = User_surname,
-                    UsersDatebirth = DateOnly.FromDateTime(User_datebirth),
-                    UsersRole = User_role
-                });
+                    _userService.SignUp(new User
+                    {
+                        UsersLogin = User_login,
+                        UsersPassword = User_password,
+                        UsersName = User_name,
+                        UsersSurname = User_surname,
+                        UsersDatebirth = DateOnly.FromDateTime(User_datebirth),
+                        UsersRole = User_role
+                    }, QualIndex + 1);
+                }
+                else
+                {
+                    _userService.SignUp(new User
+                    {
+                        UsersLogin = User_login,
+                        UsersPassword = User_password,
+                        UsersName = User_name,
+                        UsersSurname = User_surname,
+                        UsersDatebirth = DateOnly.FromDateTime(User_datebirth),
+                        UsersRole = User_role
+                    }, null);
+                }
                 _pageService.ChangePage(new SignInPage());
             }
         }

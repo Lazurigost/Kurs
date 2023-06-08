@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Oleg_LessonDiary.ViewModels
+﻿namespace Oleg_LessonDiary.ViewModels
 {
     public partial class AuthorizedUserControlViewModel : ObservableObject
     {
         [ObservableProperty]
         private string? fullname;
         [ObservableProperty]
-        private string? authRole;
+        private int? authRole;
 
         private readonly PageService _pageService;
 

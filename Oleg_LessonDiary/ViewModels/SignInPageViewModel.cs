@@ -14,14 +14,23 @@
         [ObservableProperty]
         [Required(ErrorMessage = "Заполните поле")]
         private string? usersPassword;
+        [ObservableProperty]
+        private List<Teacher> teacherList = new();
         #endregion
 
-        public SignInPageViewModel(UserService userService, PageService pageService)
+        public SignInPageViewModel(UserService userService, PageService pageService, TeacherService teacherService)
         {
             _userService = userService;
             _pageService = pageService;
+            _teacherService = teacherService;
+
+            Bruh();
         }
         #region Комманды
+        private async void Bruh()
+        {
+            TeacherList = await _teacherService.GetAllTeachersAsync();
+        }
         [RelayCommand]
         private async void SignIn()
         {
@@ -29,7 +38,12 @@
             {
                 if (await _userService.Authorization(userLogin, usersPassword))
                 {
-                    await Application.Current.Dispatcher.InvokeAsync(async () => _pageService.ChangePage(new UserStartupPage()));
+                    MessageBox.Show("Pobeda");
+                    //await Application.Current.Dispatcher.InvokeAsync(async () => _pageService.ChangePage(new UserStartupPage()));
+                    if (Global.teacher != null)
+                    {
+                        MessageBox.Show(TeacherList[0].IdTeacher1.UsersPatronymics);
+                    }
                 }
                 else
                 {

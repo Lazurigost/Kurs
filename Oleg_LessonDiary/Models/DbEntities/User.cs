@@ -17,11 +17,13 @@ public partial class User
 
     public string? UsersPatronymics { get; set; }
 
-    public DateTime UsersDatebirth { get; set; }
+    public DateOnly UsersDatebirth { get; set; }
 
-    public string UsersRole { get; set; } = null!;
+    public int UsersRole { get; set; }
 
-    public virtual ICollection<Learnplan> Learnplans { get; } = new List<Learnplan>();
+    public virtual Learninguser? Learninguser { get; set; }
 
-    public virtual ICollection<Userssubsription> Userssubsriptions { get; } = new List<Userssubsription>();
+    public virtual Teacher? Teacher { get; set; }
+
+    public virtual Role UsersRoleNavigation { get; set; } = null!;
 }

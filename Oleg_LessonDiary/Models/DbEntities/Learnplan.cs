@@ -15,5 +15,7 @@ public partial class Learnplan
 
     public virtual Kur LearnPlanIdKursNavigation { get; set; } = null!;
 
-    public virtual User LearnPlanIdTeacherNavigation { get; set; } = null!;
+    public virtual Teacher LearnPlanIdTeacherNavigation { get; set; } = null!;
+
+    public virtual ICollection<Userssubscription> Userssubscriptions { get; } = new List<Userssubscription>();
 }
