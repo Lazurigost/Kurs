@@ -11,7 +11,7 @@ public partial class Userssubscription
 
     public DateTime? UserssubsriptionDate { get; set; }
 
-    public string UserssubsriptionStatus { get; set; } = null!;
+    public int UserssubsriptionStatus { get; set; }
 
     public int? UserssubscriptionIdPlan { get; set; }
 

@@ -27,6 +27,8 @@ public partial class NewlearnContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
+    public virtual DbSet<Status> Statuses { get; set; }
+
     public virtual DbSet<Teacher> Teachers { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -149,6 +151,20 @@ public partial class NewlearnContext : DbContext
                 .HasColumnName("role_name");
         });
 
+        modelBuilder.Entity<Status>(entity =>
+        {
+            entity.HasKey(e => e.IdStatus).HasName("PRIMARY");
+
+            entity.ToTable("status");
+
+            entity.Property(e => e.IdStatus)
+                .ValueGeneratedNever()
+                .HasColumnName("id_status");
+            entity.Property(e => e.StatusFull)
+                .HasMaxLength(45)
+                .HasColumnName("status_full");
+        });
+
         modelBuilder.Entity<Teacher>(entity =>
         {
             entity.HasKey(e => e.IdTeacher).HasName("PRIMARY");
@@ -156,6 +172,8 @@ public partial class NewlearnContext : DbContext
             entity.ToTable("teacher");
 
             entity.HasIndex(e => e.IdTeacher, "id_teacher_key_idx");
+
+            entity.HasIndex(e => e.TeacherIdQual, "teacher_id_qual_fk_idx");
 
             entity.Property(e => e.IdTeacher)
                 .ValueGeneratedNever()
@@ -165,12 +183,12 @@ public partial class NewlearnContext : DbContext
             entity.HasOne(d => d.IdTeacherNavigation).WithOne(p => p.Teacher)
                 .HasForeignKey<Teacher>(d => d.IdTeacher)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("teacher_id_qual_fk");
-
-            entity.HasOne(d => d.IdTeacher1).WithOne(p => p.Teacher)
-                .HasForeignKey<Teacher>(d => d.IdTeacher)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("id_teacher_key");
+
+            entity.HasOne(d => d.TeacherIdQualNavigation).WithMany(p => p.Teachers)
+                .HasForeignKey(d => d.TeacherIdQual)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("teacher_id_qual_fk");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -222,10 +240,7 @@ public partial class NewlearnContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("userssubsription_date");
             entity.Property(e => e.UserssubsriptionIdUsers).HasColumnName("userssubsription_id_users");
-            entity.Property(e => e.UserssubsriptionStatus)
-                .HasMaxLength(45)
-                .HasColumnName("userssubsription_status")
-                .UseCollation("utf8mb4_bin");
+            entity.Property(e => e.UserssubsriptionStatus).HasColumnName("userssubsription_status");
 
             entity.HasOne(d => d.UserssubscriptionIdPlanNavigation).WithMany(p => p.Userssubscriptions)
                 .HasForeignKey(d => d.UserssubscriptionIdPlan)

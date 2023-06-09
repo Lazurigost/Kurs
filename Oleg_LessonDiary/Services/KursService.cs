@@ -13,5 +13,9 @@ namespace Oleg_LessonDiary.Services
         {
             _newlearnContext = newlearnContext;
         }
+        public async Task<List<Kur>> GetAllKursesAsync()
+        {
+            return await _newlearnContext.Kurs.ToListAsync();
+        }
     }
 }

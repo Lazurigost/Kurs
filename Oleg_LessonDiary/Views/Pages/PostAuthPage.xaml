@@ -54,9 +54,9 @@
                                 <TextBlock HorizontalAlignment="Center">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0} {1} {2}">
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacher1.UsersName"/>
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacher1.UsersSurname"/>
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacher1.UsersPatronymics"/>
+                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName"/>
+                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname"/>
+                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersPatronymics"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
@@ -88,8 +88,8 @@
                 <ColumnDefinition Width="{Binding ActualWidth, ElementName=uc}"/>
             </Grid.ColumnDefinitions>
             <ListView Grid.Row="1"
-                      ItemsSource="{Binding LearnplanList}"
-                      SelectedItem="{Binding SelectedPlan}"
+                      ItemsSource="{Binding KursList}"
+                      SelectedItem="{Binding SelectedKurs}"
                       Height="auto"
                       VerticalAlignment="Center">
 
@@ -109,14 +109,14 @@
                             MinWidth="100"
                             BorderBrush="LightGoldenrodYellow">
                             <StackPanel>
-                                <TextBlock Text="{Binding LearnPlanIdKursNavigation.KursName}"
+                                <TextBlock Text="{Binding KursName}"
                                       HorizontalAlignment="Center"/>
                                 <TextBlock HorizontalAlignment="Center">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0} {1} {2}">
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacher1.UsersName"/>
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacher1.UsersSurname"/>
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacher1.UsersPatronymics"/>
+                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName"/>
+                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname"/>
+                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersPatronymics"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>

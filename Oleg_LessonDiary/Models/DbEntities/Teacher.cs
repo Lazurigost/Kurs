@@ -9,9 +9,9 @@ public partial class Teacher
 
     public int TeacherIdQual { get; set; }
 
-    public virtual User IdTeacher1 { get; set; } = null!;
-
-    public virtual Qualification IdTeacherNavigation { get; set; } = null!;
+    public virtual User IdTeacherNavigation { get; set; } = null!;
 
     public virtual ICollection<Learnplan> Learnplans { get; } = new List<Learnplan>();
+
+    public virtual Qualification TeacherIdQualNavigation { get; set; } = null!;
 }

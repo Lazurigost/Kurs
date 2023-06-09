@@ -19,8 +19,8 @@
             }
             else if (Global.teacher != null)
             {
-                Fullname = $"{Global.teacher.IdTeacher1.UsersSurname} {Global.teacher.IdTeacher1.UsersName} {Global.teacher.IdTeacher1.UsersPatronymics}";
-                AuthRole = Global.teacher.IdTeacher1.UsersRoleNavigation.RoleName;
+                Fullname = $"{Global.teacher.IdTeacherNavigation.UsersSurname} {Global.teacher.IdTeacherNavigation.UsersName} {Global.teacher.IdTeacherNavigation.UsersPatronymics}";
+                AuthRole = Global.teacher.IdTeacherNavigation.UsersRoleNavigation.RoleName;
             }
         }
         [RelayCommand]

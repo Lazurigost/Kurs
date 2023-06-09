@@ -1,6 +1,7 @@
 ﻿using Oleg_LessonDiary.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,10 @@ namespace Oleg_LessonDiary.Services
         {
             _context = context;
         }
-        public async Task<List<Lplan>> GetAllPlansAsync()
+        public async Task<ObservableCollection<Lplan>> GetAllPlansAsync()
         {
             List<Learnplan> plans = await _context.Learnplans.ToListAsync();
-            List<Lplan> lplans = new();
+            ObservableCollection<Lplan> lplans = new();
             foreach (var pl in plans)
             {
                 lplans.Add(new Lplan

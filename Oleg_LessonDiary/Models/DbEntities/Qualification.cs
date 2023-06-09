@@ -9,5 +9,5 @@ public partial class Qualification
 
     public string QualificationsName { get; set; } = null!;
 
-    public virtual Teacher? Teacher { get; set; }
+    public virtual ICollection<Teacher> Teachers { get; } = new List<Teacher>();
 }
