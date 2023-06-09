@@ -5,7 +5,7 @@
         [ObservableProperty]
         private string? fullname;
         [ObservableProperty]
-        private int? authRole;
+        private string? authRole;
 
         private readonly PageService _pageService;
 
@@ -15,7 +15,12 @@
             if (Global.user != null)
             {
                 Fullname = $"{Global.user.UsersSurname} {Global.user.UsersName} {Global.user.UsersPatronymics}";
-                AuthRole = Global.user.UsersRole;
+                AuthRole = Global.user.UsersRoleNavigation.RoleName;
+            }
+            else if (Global.teacher != null)
+            {
+                Fullname = $"{Global.teacher.IdTeacher1.UsersSurname} {Global.teacher.IdTeacher1.UsersName} {Global.teacher.IdTeacher1.UsersPatronymics}";
+                AuthRole = Global.teacher.IdTeacher1.UsersRoleNavigation.RoleName;
             }
         }
         [RelayCommand]

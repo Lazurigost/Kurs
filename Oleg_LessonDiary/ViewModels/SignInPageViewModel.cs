@@ -23,14 +23,9 @@
             _userService = userService;
             _pageService = pageService;
             _teacherService = teacherService;
-
-            Bruh();
         }
         #region Комманды
-        private async void Bruh()
-        {
-            TeacherList = await _teacherService.GetAllTeachersAsync();
-        }
+        
         [RelayCommand]
         private async void SignIn()
         {
@@ -38,12 +33,10 @@
             {
                 if (await _userService.Authorization(userLogin, usersPassword))
                 {
-                    MessageBox.Show("Pobeda");
-                    //await Application.Current.Dispatcher.InvokeAsync(async () => _pageService.ChangePage(new UserStartupPage()));
-                    if (Global.teacher != null)
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        MessageBox.Show(TeacherList[0].IdTeacher1.UsersPatronymics);
-                    }
+                        _pageService.ChangePage(new PostAuthPage());
+                    });
                 }
                 else
                 {

@@ -13,6 +13,9 @@
             services.AddTransient<GuitarService>();
             services.AddTransient<TeacherService>();
             services.AddTransient<QualificationService>();
+            services.AddTransient<LearnplanService>();
+            services.AddTransient<SubscriptionService>();
+            services.AddTransient<KursService>();
             #endregion
 
             #region ViewModels
@@ -21,12 +24,13 @@
             services.AddTransient<SignInPageViewModel>();
             services.AddTransient<AuthorizedUserControlViewModel>();
             services.AddTransient<UserStartupPageViewModel>();
+            services.AddTransient<PostAuthPageViewModel>();
             #endregion
             
             #region Contexts
             services.AddDbContext<NewlearnContext>(options =>
             {
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["OdinsonlearnDatabase"].ConnectionString;
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NewlearnDatabase"].ConnectionString;
                 options.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             }, ServiceLifetime.Transient);
             #endregion
@@ -45,5 +49,6 @@
         public SignUpPageViewModel SignUpPageViewModel => _provider.GetRequiredService<SignUpPageViewModel>();
         public AuthorizedUserControlViewModel AuthorizedUserControlViewModel => _provider.GetRequiredService<AuthorizedUserControlViewModel>();
         public UserStartupPageViewModel UserStartupPageViewModel => _provider.GetRequiredService<UserStartupPageViewModel>();
+        public PostAuthPageViewModel PostAuthPageViewModel => _provider.GetRequiredService<PostAuthPageViewModel>();
     }
 }

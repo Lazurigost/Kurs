@@ -26,7 +26,9 @@
                         UsersSurname = user.UsersSurname,
                         UsersPatronymics = user.UsersPatronymics,
                         UsersDatebirth = user.UsersDatebirth,
-                        UsersRole = user.UsersRole
+                        UsersRole = user.UsersRole,
+                        UsersRoleNavigation = user.UsersRoleNavigation,
+                        
                     };
                 }
                 else if (user.UsersRole == 1)

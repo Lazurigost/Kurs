@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Oleg_LessonDiary.Models.DbEntities;
 
-public partial class Learnplan
+public partial class Learnplan : ObservableObject
 {
     public int IdLearnPlan { get; set; }
 
