@@ -8,9 +8,101 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TeacherStartupPage">
+      Title="TeacherStartupPage"
+      DataContext="{Binding TeacherStartupPage, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Запланированные уроки:"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"/>
+        <!--<usercontrols:AuthorizedUserControl Grid.Column="1"
+                                            Margin="5,10,5,5"
+                                            Grid.RowSpan="2"/>-->
+        <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  VerticalAlignment="Top"
+                  HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding SelectedKurs}"
+                  ItemsSource="{Binding KursList}"
+                  SelectionMode="Single"
+                  Name="ColumnWidth">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                               MaxWidth="{Binding ActualWidth, ElementName=ColumnWidth, Mode=OneWay}"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10,10"
+                            BorderThickness="3"
+                            Padding="10,0"
+                            MaxWidth="400"
+                            MinWidth="350"
+                            BorderBrush="LightGoldenrodYellow">
+                        <Grid Height="auto"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding LessonDate, StringFormat='Запланировано на: {0}'}"/>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Учитель: {0} {1} {2}">
+                                        <Binding Path="JournalTeacher.TrSurname"/>
+                                        <Binding Path="JournalTeacher.TrName"/>
+                                        <Binding Path="JournalTeacher.TrPatronymics"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding LessonDescription}"
+                                       Grid.Row="2"
+                                       Grid.Column="0"/>
+                            <Button Grid.Row="1"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    MinWidth="170"
+                                    MaxWidth="200"
+                                    HorizontalAlignment="Right"
+                                    Content="Перенести занятие"
+                                    Command="{Binding DataContext.EditLessonCommand, RelativeSource={RelativeSource AncestorType=local:UserStartupPage}}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <StackPanel>
+                <Image/>
+                <TextBlock/>
+                <Button Content="Редактировать"/>
+                <Button Content=""/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
