@@ -16,7 +16,7 @@
                                            VerticalAlignment="Top"
                                            Margin="5,10,5,5"
                                            x:Name="uc"/>
-        <Grid Visibility="{Binding IsUser, Converter={StaticResource b2v}}">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="{Binding ActualHeight, ElementName=uc}"/>
                 <RowDefinition Height="*"/>
@@ -28,6 +28,7 @@
             </Grid.ColumnDefinitions>
 
             <ListView Grid.Row="1"
+                      Visibility="{Binding IsUser, Converter={StaticResource b2v}}"
                       ItemsSource="{Binding LearnplanList}"
                       SelectedItem="{Binding SelectedPlan}"
                       Height="auto"
@@ -75,19 +76,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-        </Grid>
-        <Grid Visibility="{Binding IsTeacher, Converter={StaticResource b2v}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding ActualHeight, ElementName=uc}"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="{Binding ActualWidth, ElementName=uc}"/>
-            </Grid.ColumnDefinitions>
             <ListView Grid.Row="1"
+                      Visibility="{Binding IsTeacher, Converter={StaticResource b2v}}"
                       ItemsSource="{Binding KursList}"
                       SelectedItem="{Binding SelectedKurs}"
                       Height="auto"
@@ -111,28 +101,26 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding KursName}"
                                       HorizontalAlignment="Center"/>
-                                <TextBlock HorizontalAlignment="Center">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0} {1} {2}">
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName"/>
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname"/>
-                                            <Binding Path="LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersPatronymics"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                <TextBlock HorizontalAlignment="Center">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0} / {1}">
-                                            <Binding Path="Subcount"/>
-                                            <Binding Path="LearnPlanRestriction"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="Используемая гитара:"/>
+                                    <TextBlock Text="{Binding KursIdGuitarNavigation.GuitarName}"/>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="Продолжительность:"/>
+                                    <TextBlock Text="{Binding KursDuration}"/>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="Дата начала:"/>
+                                    <TextBlock Text="{Binding KursStartDate}"/>
+                                </WrapPanel>
+                                <Button Content="Создать учебный план"
+                                        Command="{Binding DataContext.CreatePlanCommand, RelativeSource={RelativeSource AncestorType=local:PostAuthPage}}"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        
     </Grid>
 </Page>

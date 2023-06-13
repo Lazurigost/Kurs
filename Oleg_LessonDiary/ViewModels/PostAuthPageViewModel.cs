@@ -14,6 +14,7 @@ namespace Oleg_LessonDiary.ViewModels
         private readonly PageService _pageService;
         private readonly LearnplanService _learnplanService;
         private readonly SubscriptionService _subscriptionService;
+        private readonly KursService _kursService;
         #region Свойства
         [ObservableProperty]
         private bool isUser = false;
@@ -28,11 +29,12 @@ namespace Oleg_LessonDiary.ViewModels
         [ObservableProperty]
         private Kur selectedKurs;
         #endregion
-        public PostAuthPageViewModel(PageService pageService, LearnplanService learnplanService, SubscriptionService subscriptionService)
+        public PostAuthPageViewModel(PageService pageService, LearnplanService learnplanService, SubscriptionService subscriptionService, KursService kursService)
         {
             _pageService = pageService;
             _learnplanService = learnplanService;
             _subscriptionService = subscriptionService;
+            _kursService = kursService;
 
             if (Global.user != null)
             {
@@ -47,6 +49,7 @@ namespace Oleg_LessonDiary.ViewModels
         }
         private async void Update()
         {
+            KursList = await _kursService.GetAllKursesAsync();
             LearnplanList = await _learnplanService.GetAllPlansAsync();
         }
         [RelayCommand]
@@ -54,6 +57,11 @@ namespace Oleg_LessonDiary.ViewModels
         {
             _subscriptionService.Subscribe(selectedPlan.IdLearnPlan);
             Update();
+        }
+        [RelayCommand]
+        private void CreatePlan()
+        {
+
         }
     }
 }

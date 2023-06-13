@@ -27,6 +27,7 @@
         private void LogOut()
         {
             Global.user = null;
+            Global.teacher = null;
             _pageService.ChangePage(new SignInPage());
         }
     }
