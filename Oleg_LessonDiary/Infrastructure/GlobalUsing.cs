@@ -26,3 +26,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Configuration.Json;
 global using Microsoft.EntityFrameworkCore.Design;
 global using Microsoft.EntityFrameworkCore;
+global using Oleg_LessonDiary.Infrastructure.Converters;

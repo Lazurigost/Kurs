@@ -44,6 +44,7 @@ namespace Oleg_LessonDiary.ViewModels
             else if (Global.teacher != null)
             {
                 IsTeacher = true;
+                Update();
             }
             
         }

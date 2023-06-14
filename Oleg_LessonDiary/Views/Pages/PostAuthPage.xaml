@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Oleg_LessonDiary.Views.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
+      xmlns:converters="clr-namespace:Oleg_LessonDiary.Infrastructure.Converters"
       xmlns:UserControl="clr-namespace:Oleg_LessonDiary.Views.UserControls"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PostAuthPage"
@@ -102,16 +103,17 @@
                                 <TextBlock Text="{Binding KursName}"
                                       HorizontalAlignment="Center"/>
                                 <WrapPanel HorizontalAlignment="Center">
-                                    <TextBlock Text="Используемая гитара:"/>
+                                    <TextBlock Text="Используемая гитара: "/>
                                     <TextBlock Text="{Binding KursIdGuitarNavigation.GuitarName}"/>
                                 </WrapPanel>
                                 <WrapPanel HorizontalAlignment="Center">
-                                    <TextBlock Text="Продолжительность:"/>
+                                    <TextBlock Text="Продолжительность: "/>
                                     <TextBlock Text="{Binding KursDuration}"/>
+                                    <TextBlock Text=" Месяцев"/>
                                 </WrapPanel>
                                 <WrapPanel HorizontalAlignment="Center">
-                                    <TextBlock Text="Дата начала:"/>
-                                    <TextBlock Text="{Binding KursStartDate}"/>
+                                    <TextBlock Text="Дата начала: "/>
+                                    <TextBlock Text="{Binding KursStartDate, Converter={converters:DateTimeToDateOnlyConverter}}"/>
                                 </WrapPanel>
                                 <Button Content="Создать учебный план"
                                         Command="{Binding DataContext.CreatePlanCommand, RelativeSource={RelativeSource AncestorType=local:PostAuthPage}}"/>
