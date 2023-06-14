@@ -113,7 +113,7 @@
                                 </WrapPanel>
                                 <WrapPanel HorizontalAlignment="Center">
                                     <TextBlock Text="Дата начала: "/>
-                                    <TextBlock Text="{Binding KursStartDate, Converter={converters:DateTimeToDateOnlyConverter}}"/>
+                                    <TextBlock Text="{Binding Converter={converters:DateTimeToDateOnlyConverter Value=KursStartDate}}"/>
                                 </WrapPanel>
                                 <Button Content="Создать учебный план"
                                         Command="{Binding DataContext.CreatePlanCommand, RelativeSource={RelativeSource AncestorType=local:PostAuthPage}}"/>
