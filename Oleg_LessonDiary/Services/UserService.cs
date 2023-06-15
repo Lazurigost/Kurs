@@ -30,6 +30,7 @@
                         UsersRoleNavigation = user.UsersRoleNavigation,
                         
                     };
+                    foreach()
                 }
                 else if (user.UsersRole == 1)
                 {
