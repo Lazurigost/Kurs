@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Oleg_LessonDiary.Models
 {
-    public partial class UserModel : ObservableObject
+    public partial class UserModel : User
     {
         [ObservableProperty]
-        private List<int> subbedList = new();
+        private List<Userssubscription> subbedList = new();
     }
 }

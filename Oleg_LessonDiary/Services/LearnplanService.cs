@@ -36,6 +36,10 @@ namespace Oleg_LessonDiary.Services
             }
             return lplans;
         }
+        public async Task<ObservableCollection<Learnplan>> GetUserPlan(UserModel user)
+        {
+            List<Learnplan> plans = await _context.Learnplans.Where(p => p.id)
+        } 
         public async Task<int> GetPlanSubsAsync(Learnplan idplan)
         {
             List<Userssubscription> users = await _context.Userssubscriptions.Where(u => u.UserssubscriptionIdPlan == idplan.IdLearnPlan).ToListAsync();

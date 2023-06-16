@@ -1,4 +1,6 @@
-﻿namespace Oleg_LessonDiary.Services
+﻿using Oleg_LessonDiary.Models;
+
+namespace Oleg_LessonDiary.Services
 {
     internal class UserService
     {
@@ -17,7 +19,8 @@
             {
                 if (user.UsersRole == 2)
                 {
-                    Global.user = new User
+                    List<Userssubscription> subbed = await _context.Userssubscriptions.Where(s => s.UserssubsriptionIdUsers == user.IdUsers).ToListAsync();
+                    Global.user = new UserModel
                     {
                         IdUsers = user.IdUsers,
                         UsersLogin = user.UsersLogin,
@@ -28,9 +31,8 @@
                         UsersDatebirth = user.UsersDatebirth,
                         UsersRole = user.UsersRole,
                         UsersRoleNavigation = user.UsersRoleNavigation,
-                        
+                        SubbedList = subbed
                     };
-                    foreach()
                 }
                 else if (user.UsersRole == 1)
                 {
