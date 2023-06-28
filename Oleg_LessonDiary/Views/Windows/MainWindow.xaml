@@ -7,7 +7,14 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="LessonDiary" Height="450" Width="800"
-        DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}">
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
 
     <Frame Content="{Binding PageSource}"
            NavigationUIVisibility="Hidden"/>

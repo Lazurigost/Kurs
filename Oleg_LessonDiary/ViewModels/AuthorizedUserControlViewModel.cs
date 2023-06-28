@@ -11,7 +11,7 @@
 
         public AuthorizedUserControlViewModel(PageService pageService)
         {
-            _pageService = pageService;
+            _pageService = pageService;            
             if (Global.user != null)
             {
                 Fullname = $"{Global.user.UsersSurname} {Global.user.UsersName} {Global.user.UsersPatronymics}";

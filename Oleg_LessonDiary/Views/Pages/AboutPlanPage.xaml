@@ -1,0 +1,85 @@
+﻿<Page x:Class="Oleg_LessonDiary.Views.Pages.AboutPlanPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Oleg_LessonDiary.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AboutPlanPage"
+      DataContext="{Binding AboutPlanPageViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button HorizontalAlignment="Left"
+                Content="Назад"
+                Margin="30,0,30,0"
+                Command="{Binding GoBackCommand}"/>
+        <TextBlock Text="Информация о курсе"
+                   Grid.Column="1"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Margin="0,20,0,0"/>
+        <WrapPanel Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,30">
+            <TextBlock Text="{Binding Name, StringFormat=Название курса: {0}}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,30">
+            <TextBlock Text="{Binding GitarName, StringFormat=Используемая гитара: {0}}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="20,0,150,30">
+            <TextBlock Text="{Binding KursDuration, StringFormat=Название курса: {0}}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Margin="20,0,150,30">
+            <TextBlock Text="{Binding StartDate, StringFormat=Дата начала: {0}}"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="170,30,0,0">
+            <TextBlock Text="{Binding Restriction, StringFormat=Записано: {0}}"/>
+            <TextBlock Text="{Binding EndRestriction, StringFormat=/{0}}"/>
+        </WrapPanel>
+        <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Grid.RowSpan="2"
+                  ItemsSource="{Binding SubbedList}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding UsersLogin}"/>
+                        <TextBlock Text="{Binding UsersName}"
+                                   Margin="30,0,30,0"/>
+                        <TextBlock Text="{Binding UsersSurname}"/>
+                        <TextBlock Text="{Binding UsersPatronymics}"
+                            Margin="30,0,30,0"/>
+                        <TextBlock Text="{Binding UsersDatebirth}"/>
+                    </WrapPanel>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

@@ -1,0 +1,98 @@
+﻿<Page x:Class="Oleg_LessonDiary.Views.Pages.MyProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:UserControl="clr-namespace:Oleg_LessonDiary.Views.UserControls"
+      xmlns:local="clr-namespace:Oleg_LessonDiary.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MyProfilePage"
+      DataContext="{Binding MyProfilePageViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid>
+        <UserControl:AuthorizedUserControl HorizontalAlignment="Right"
+                                           VerticalAlignment="Top"
+                                           Margin="5,10,5,5"
+                                           x:Name="uc"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding ActualHeight, ElementName=uc}"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="{Binding ActualWidth, ElementName=uc}"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Height="30"
+                        materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding GoToPostAuthCommand}"
+                        Margin="0,0,10,0">
+                    <TextBlock
+                            Text="{Binding PlanOrKurs}" />
+                </Button>
+                <Button Height="30"
+                        Grid.Column="1"    
+                        materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding GoToMyBlankCommand}"
+                        Margin="0,0,10,0">
+                    <TextBlock
+                            Text="{Binding MySubsOrKurs, StringFormat=Мои {0}}" />
+                </Button>
+                <Button Height="30"
+                        Grid.Column="2"    
+                        materialDesign:ButtonAssist.CornerRadius="25 25 0 0"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                        Background="Purple"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding GoToMyProfileCommand}"
+                        Margin="0,0,10,0">
+                    <TextBlock
+                            Text="Профиль" />
+                </Button>
+            </Grid>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Login, StringFormat=Логин: {0}}"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Name, StringFormat=Имя: {0}}"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Surname, StringFormat=Фамилия: {0}}"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Patronymics, StringFormat=Отчество: {0}}"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Bdate, StringFormat=Дата рождения: {0}}"/>
+                </WrapPanel>
+                <Button Content="Изменить"
+                        Margin="0,30"
+                        Command="{Binding GoToEditProfileCommand}"/>
+            </StackPanel>
+            
+        </Grid>
+
+    </Grid>
+</Page>

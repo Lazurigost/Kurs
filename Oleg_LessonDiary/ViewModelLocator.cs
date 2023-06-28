@@ -25,6 +25,11 @@
             services.AddTransient<AuthorizedUserControlViewModel>();
             services.AddTransient<UserStartupPageViewModel>();
             services.AddTransient<PostAuthPageViewModel>();
+            services.AddTransient<MyBlankPageViewModel>();
+            services.AddTransient<MyProfilePageViewModel>();
+            services.AddTransient<EditProfilePageViewModel>();
+            services.AddTransient<AddKursPageViewModel>();
+            services.AddTransient<AboutPlanPageViewModel>();
             #endregion
             
             #region Contexts
@@ -50,5 +55,10 @@
         public AuthorizedUserControlViewModel AuthorizedUserControlViewModel => _provider.GetRequiredService<AuthorizedUserControlViewModel>();
         public UserStartupPageViewModel UserStartupPageViewModel => _provider.GetRequiredService<UserStartupPageViewModel>();
         public PostAuthPageViewModel PostAuthPageViewModel => _provider.GetRequiredService<PostAuthPageViewModel>();
+        public MyBlankPageViewModel MyBlankPageViewModel => _provider.GetRequiredService<MyBlankPageViewModel>();
+        public MyProfilePageViewModel MyProfilePageViewModel => _provider.GetRequiredService<MyProfilePageViewModel>();
+        public EditProfilePageViewModel EditProfilePageViewModel => _provider.GetRequiredService<EditProfilePageViewModel>();
+        public AddKursPageViewModel AddKursPageViewModel => _provider.GetRequiredService<AddKursPageViewModel>();
+        public AboutPlanPageViewModel AboutPlanPageViewModel => _provider.GetRequiredService<AboutPlanPageViewModel>();
     }
 }

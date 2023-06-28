@@ -16,7 +16,7 @@ namespace Oleg_LessonDiary.ViewModels
         private readonly SubscriptionService _subscriptionService;
         private readonly KursService _kursService;
         #region Свойства
-        [ObservableProperty]
+        [ObservableProperty]    
         private bool isUser = false;
         [ObservableProperty]
         private bool isTeacher = false;
@@ -28,6 +28,10 @@ namespace Oleg_LessonDiary.ViewModels
         private List<Kur> kursList;
         [ObservableProperty]
         private Kur selectedKurs;
+        [ObservableProperty]
+        private string planOrKurs;
+        [ObservableProperty]
+        private string mySubsOrKurs;
         #endregion
         public PostAuthPageViewModel(PageService pageService, LearnplanService learnplanService, SubscriptionService subscriptionService, KursService kursService)
         {
@@ -38,11 +42,15 @@ namespace Oleg_LessonDiary.ViewModels
 
             if (Global.user != null)
             {
+                MySubsOrKurs = "подписки";
+                PlanOrKurs = "Планы";
                 IsUser = true;
                 Update();
             }
             else if (Global.teacher != null)
             {
+                MySubsOrKurs = "планы";
+                PlanOrKurs = "Курсы";
                 IsTeacher = true;
                 Update();
             }
@@ -50,19 +58,51 @@ namespace Oleg_LessonDiary.ViewModels
         }
         private async void Update()
         {
-            KursList = await _kursService.GetAllKursesAsync();
-            LearnplanList = await _learnplanService.GetAllPlansAsync();
+            
+            if(Global.user != null)
+            {
+                LearnplanList = await _learnplanService.GetUserPlan(Global.user);
+            }
+            else
+            {
+                KursList = await _kursService.GetAllKursesAsync();
+            }
         }
         [RelayCommand]
         private void Subscribe()
-        {
-            _subscriptionService.Subscribe(selectedPlan.IdLearnPlan);
+        {   
+            if(SelectedPlan  != null)
+            {
+                _subscriptionService.Subscribe(selectedPlan.IdLearnPlan);
+                MessageBox.Show("Запись на курс прошла успешно!");
+            }
+            
             Update();
         }
         [RelayCommand]
         private void CreatePlan()
         {
 
+        }
+        [RelayCommand]
+        private void Aboba()
+        {
+            MessageBox.Show("Aboba");
+        }
+        [RelayCommand]
+        private void GoToMyBlank()
+        {
+            _pageService.ChangePage(new MyBlankPage());
+        }
+        [RelayCommand]
+        private void GoToMyProfile()
+        {
+            _pageService.ChangePage(new MyProfilePage());
+        }
+        [RelayCommand]
+        private void GoToAddNewKurs()
+        {
+            _pageService.ChangePage(new AddKursPage());
         }
     }
 }

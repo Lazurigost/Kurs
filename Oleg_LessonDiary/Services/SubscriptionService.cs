@@ -30,5 +30,14 @@ namespace Oleg_LessonDiary.Services
             await _context.Userssubscriptions.AddAsync(newSub);
             await _context.SaveChangesAsync();
         }
+        public async void Unsubscribe(int id)
+        {
+            Userssubscription sub = await _context.Userssubscriptions.Where(s => s.UserssubscriptionIdPlan == id).FirstOrDefaultAsync();
+            if (sub != null)
+            {
+                _context.Userssubscriptions.Remove(sub);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
