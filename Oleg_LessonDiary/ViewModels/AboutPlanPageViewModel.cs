@@ -46,5 +46,10 @@ namespace Oleg_LessonDiary.ViewModels
                 EndRestriction = Global.lplan.LearnPlanRestriction.ToString();
             }
         }
+        [RelayCommand]
+        private void GoBack()
+        {
+            _pageService.ChangePage(new PostAuthPage());
+        }
     }
 }

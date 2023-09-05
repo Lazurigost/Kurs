@@ -100,5 +100,10 @@ namespace Oleg_LessonDiary.ViewModels
             
             
         }
+        [RelayCommand]
+        private void GoBack()
+        {
+            _pageService.ChangePage(new PostAuthPage());
+        }
     }
 }

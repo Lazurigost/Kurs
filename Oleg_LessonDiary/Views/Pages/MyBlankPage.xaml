@@ -120,7 +120,7 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-                                <Button Content="Записаться"
+                                <Button Content="Отписаться"
                                         Command="{Binding DataContext.UnSubscribeCommand, RelativeSource={RelativeSource AncestorType=local:MyBlankPage}}"/>
                             </StackPanel>
                         </Border>
@@ -193,6 +193,9 @@
                 Kind="Add" />
                 
             </Button>-->
+            <Button Grid.Row="1" 
+                    Grid.Column="1"
+                    Command="{Binding DataContext.PrintCommand, RelativeSource={RelativeSource AncestorType=local:MyBlankPage}}"/>
         </Grid>
 
     </Grid>

@@ -1,4 +1,5 @@
 ﻿using Oleg_LessonDiary.Models;
+using Oleg_LessonDiary.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,8 @@ namespace Oleg_LessonDiary.ViewModels
         private readonly KursService _kursService;
         private readonly LearnplanService _learnplanService;
         private readonly SubscriptionService _subscriptionService;
+        private readonly DocumentService _documentService;
+        private readonly SaveFileDialogService saveFileDialogService_;
         #endregion
         #region Свойства
         [ObservableProperty]
@@ -34,12 +37,15 @@ namespace Oleg_LessonDiary.ViewModels
         [ObservableProperty]
         private Lplan selectedUserPlan;
         #endregion
-        public MyBlankPageViewModel(PageService pageService, KursService kursService, LearnplanService learnplanService, SubscriptionService subscriptionService) 
+        public MyBlankPageViewModel(PageService pageService, KursService kursService, LearnplanService learnplanService,
+            SubscriptionService subscriptionService, DocumentService documentService, SaveFileDialogService saveFileDialogService)
         {
             _pageService = pageService;
             _learnplanService = learnplanService;
             _kursService = kursService;
             _subscriptionService = subscriptionService;
+            _documentService = documentService;
+            saveFileDialogService_ = saveFileDialogService;
 
             if (Global.user != null)
             {
@@ -55,6 +61,7 @@ namespace Oleg_LessonDiary.ViewModels
                 IsTeacher = true;
                 Update();
             }
+            
         }
         private async void Update()
         {
@@ -102,6 +109,16 @@ namespace Oleg_LessonDiary.ViewModels
         {
             Global.lplan = SelectedTeachPlan;
             _pageService.ChangePage(new AboutPlanPage());
+        }
+        [RelayCommand]
+        private void Print()
+        {
+            string selectedFolder = "";
+            selectedFolder = saveFileDialogService_.PDFSaveFileDialog();
+            if (selectedFolder != "no folder")
+            {
+                _documentService.CreateDocument(Global.user, selectedFolder);
+            }
         }
     }
 }

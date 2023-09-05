@@ -16,6 +16,8 @@
             services.AddTransient<LearnplanService>();
             services.AddTransient<SubscriptionService>();
             services.AddTransient<KursService>();
+            services.AddTransient<DocumentService>();
+            services.AddTransient<SaveFileDialogService>();
             #endregion
 
             #region ViewModels
