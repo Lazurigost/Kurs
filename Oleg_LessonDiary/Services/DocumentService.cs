@@ -52,7 +52,7 @@ namespace Oleg_LessonDiary.Services
 
             document.Add(content);
 
-            content = new Paragraph($"Ученик - {order.UsersName}")
+            content = new Paragraph($"Ученик - {order.UsersName + " " + order.UsersSurname}")
                 .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
                 .SetFont(font)
                 .SetFontSize(14);
@@ -67,7 +67,7 @@ namespace Oleg_LessonDiary.Services
 
             document.Add(content);
 
-            Table table = new(6);
+            Table table = new(4);
             table.SetVerticalAlignment(iText.Layout.Properties.VerticalAlignment.BOTTOM);
             table.SetFont(font);
             table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.LEFT);
@@ -80,8 +80,8 @@ namespace Oleg_LessonDiary.Services
             foreach (var product in learnplanList)
             {
                 table.AddCell(product.LearnPlanIdKursNavigation.KursName);
-                table.AddCell(product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName);
-                table.AddCell($"{product.LearnPlanIdKursNavigation.KursDuration.ToString() + "недель"}");
+                table.AddCell(product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName + " " + product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname);
+                table.AddCell($"{product.LearnPlanIdKursNavigation.KursDuration.ToString() + " недель"}");
                 table.AddCell(product.LearnPlanIdKursNavigation.KursStartDate.ToString());
             }
 
