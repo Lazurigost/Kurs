@@ -51,6 +51,13 @@ namespace Oleg_LessonDiary.ViewModels
             if (Global.teacher != null)
             {
                 IsTeacher = true;
+
+                user_login = Global.teacher.IdTeacherNavigation.UsersLogin;
+                user_password = Global.teacher.IdTeacherNavigation.UsersPassword;
+                user_surname = Global.teacher.IdTeacherNavigation.UsersSurname;
+                user_name = Global.teacher.IdTeacherNavigation.UsersName;
+                user_patronymics = Global.teacher.IdTeacherNavigation.UsersPatronymics;
+                user_datebirth = Global.teacher.IdTeacherNavigation.UsersDatebirth.ToDateTime(TimeOnly.Parse("10:00 PM"));
             }
             else
             {

@@ -39,6 +39,16 @@ namespace Oleg_LessonDiary.ViewModels
                 MySubsOrKurs = "подписки";
                 PlanOrKurs = "Планы";
             }
+            else
+            {
+                Login = Global.teacher.IdTeacherNavigation.UsersLogin;
+                Name = Global.teacher.IdTeacherNavigation.UsersName;
+                Surname = Global.teacher.IdTeacherNavigation.UsersSurname;
+                Patronymics = Global.teacher.IdTeacherNavigation.UsersPatronymics;
+                Bdate = Global.teacher.IdTeacherNavigation.UsersDatebirth;
+                MySubsOrKurs = "планы";
+                PlanOrKurs = "Курсы";
+            }
         }
         [RelayCommand]
         private void GoToEditProfile()
