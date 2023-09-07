@@ -82,12 +82,7 @@ namespace Oleg_LessonDiary.ViewModels
         [RelayCommand]
         private void CreatePlan()
         {
-
-        }
-        [RelayCommand]
-        private void Aboba()
-        {
-            MessageBox.Show("Aboba");
+            
         }
         [RelayCommand]
         private void GoToMyBlank()
