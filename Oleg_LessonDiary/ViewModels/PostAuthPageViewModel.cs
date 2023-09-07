@@ -80,9 +80,14 @@ namespace Oleg_LessonDiary.ViewModels
             Update();
         }
         [RelayCommand]
-        private void CreatePlan()
+        private async void CreatePlan()
         {
-            
+            if (SelectedKurs != null)
+            {
+                _learnplanService.CreateLearnplan(SelectedKurs);
+
+                MessageBox.Show("Учебный план был успешно создан");
+            }
         }
         [RelayCommand]
         private void GoToMyBlank()

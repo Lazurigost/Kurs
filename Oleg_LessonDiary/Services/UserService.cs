@@ -63,6 +63,13 @@ namespace Oleg_LessonDiary.Services
                     TeacherIdQual = (int)qual
                 });
             }
+            else
+            {
+                _context.Learningusers.Add(new Learninguser
+                {
+                    IdLearningUsers = user.IdUsers
+                });
+            }
             
             await _context.SaveChangesAsync();
         }

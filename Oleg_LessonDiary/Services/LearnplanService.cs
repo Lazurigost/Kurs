@@ -119,5 +119,15 @@ namespace Oleg_LessonDiary.Services
             }
             return users;
         }
+        public async void CreateLearnplan(Kur kurs)
+        {
+            Learnplan newPlan = new();
+            newPlan.LearnPlanIdTeacher = Global.teacher.IdTeacher;
+            newPlan.LearnPlanIdKurs = kurs.IdKurs;
+            newPlan.LearnPlanRestriction = 10;
+
+            _context.AddAsync(newPlan);
+            _context.SaveChanges();
+        }
     }
 }
