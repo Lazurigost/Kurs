@@ -20,6 +20,7 @@ namespace Oleg_LessonDiary.Services
         private readonly NewlearnContext _tradeContext;
         private readonly LearnplanService _learnplanService;
 
+
         public DocumentService(NewlearnContext tradeContext, LearnplanService learnplanService)
         {
             _tradeContext = tradeContext;
@@ -80,9 +81,10 @@ namespace Oleg_LessonDiary.Services
             foreach (var product in learnplanList)
             {
                 table.AddCell(product.LearnPlanIdKursNavigation.KursName);
-                table.AddCell(product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName + " " + product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname);
+                table.AddCell(product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName + " " + product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname + " " +
+                  product.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersPatronymics);
                 table.AddCell($"{product.LearnPlanIdKursNavigation.KursDuration.ToString() + " недель"}");
-                table.AddCell(product.LearnPlanIdKursNavigation.KursStartDate.ToString());
+                table.AddCell(DateOnly.FromDateTime(product.LearnPlanIdKursNavigation.KursStartDate).ToString());
             }
 
             document.Add(table);
@@ -90,6 +92,68 @@ namespace Oleg_LessonDiary.Services
 
             document.Close();
         
+        }
+        public async void CreaterLplanDocument(Lplan lplan, string path)
+        {
+            List<User> users = new();
+            users = await _learnplanService.GetSubbedUsersAsync(lplan.IdLearnPlan);
+            PdfWriter writer = new($"{path}//Подписки на {lplan.LearnPlanIdKursNavigation.KursName} от {DateOnly.FromDateTime(DateTime.Now).ToString("D")}.pdf");
+            PdfDocument pdf = new(writer);
+            Document document = new(pdf);
+
+            PdfFont font = PdfFontFactory.CreateFont(@"C:\Windows\Fonts\Arial.ttf", PdfEncodings.IDENTITY_H, PdfFontFactory.EmbeddingStrategy.PREFER_NOT_EMBEDDED);
+
+            var content = new Paragraph($"ООО Одинсон-лёрн")
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFont(font)
+                .SetFontSize(16);
+
+            document.Add(content);
+
+            content = new Paragraph($"Курс - {lplan.LearnPlanIdKursNavigation.KursName}")
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFont(font)
+                .SetFontSize(16);
+
+            document.Add(content);
+
+            content = new Paragraph($"Учитель - {lplan.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersName + " " + lplan.LearnPlanIdTeacherNavigation.IdTeacherNavigation.UsersSurname}")
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFont(font)
+                .SetFontSize(14);
+
+            document.Add(content);
+
+            content = new Paragraph($"Текущие подписки")
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFont(font)
+                .SetFontSize(14)
+                .SetBold();
+
+            document.Add(content);
+
+            Table table = new(4);
+            table.SetVerticalAlignment(iText.Layout.Properties.VerticalAlignment.BOTTOM);
+            table.SetFont(font);
+            table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.LEFT);
+
+            table.AddCell("Логин");
+            table.AddCell("Имя");
+            table.AddCell("Фамилия");
+            table.AddCell("Отчество");
+
+            foreach (var product in users)
+            {
+                table.AddCell(product.UsersLogin);
+                table.AddCell(product.UsersName);
+                table.AddCell(product.UsersSurname);
+                table.AddCell(product.UsersPatronymics);
+            }
+
+            document.Add(table);
+
+
+            document.Close();
         }
     }
 }

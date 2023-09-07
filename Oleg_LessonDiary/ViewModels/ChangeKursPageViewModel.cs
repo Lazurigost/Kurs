@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Oleg_LessonDiary.ViewModels
 {
-    public partial class AddKursPageViewModel : ObservableValidator
+    public partial class ChangeKursPageViewModel : ObservableValidator
     {
         private readonly PageService _pageService;
         private readonly KursService _kursService;
@@ -22,45 +22,54 @@ namespace Oleg_LessonDiary.ViewModels
         private Guitar selectedGuitar;
         [ObservableProperty]
         [Required(ErrorMessage = "Заполните поле")]
-        private int duration;
+        private int? duration;
         [ObservableProperty]
         [Required(ErrorMessage = "Заполните поле")]
         private DateTime startDate;
         [ObservableProperty]
         private DateTime today;
-        public AddKursPageViewModel(PageService pageService, KursService kursService, GuitarService guitarService) 
+        [ObservableProperty]
+        private int selectedId;
+
+        public ChangeKursPageViewModel(PageService pageService, KursService kursService, GuitarService guitarService) 
         {
             _pageService = pageService;
             _kursService = kursService;
             _guitarService = guitarService;
-
-            Update();
+            if (Global.kurs != null)
+            {
+                Update();
+            }
         }
         private async void Update()
         {
-            StartDate = DateTime.Now;
+            Name = Global.kurs.KursName;
+            SelectedId = Global.kurs.KursIdGuitar;
+            Duration = Global.kurs.KursDuration;
+            StartDate = Global.kurs.KursStartDate;
             Today = DateTime.Now;
             GuitarList = await _guitarService.GetGuitarTypesAsync();
         }
         [RelayCommand]
-        private void GoBack()
-        {
-            _pageService.ChangePage(new AdminPage());
-        }
-        [RelayCommand]
-        private void ConfirmAdd()
+        private void ConfirmChange()
         {
             ValidateAllProperties();
 
-            _kursService.AddNewKurs(new Kur
+            _kursService.ChangeKurs(new Kur
             {
+                IdKurs = Global.kurs.IdKurs,
                 KursName = Name,
                 KursIdGuitar = SelectedGuitar.IdGuitar,
                 KursDuration = Duration,
                 KursStartDate = StartDate
             });
-            MessageBox.Show("Добавление прошло успешно!");
+            MessageBox.Show("Изменение прошло успешно!");
 
+            _pageService.ChangePage(new AdminPage());
+        }
+        [RelayCommand]
+        private void GoBack()
+        {
             _pageService.ChangePage(new AdminPage());
         }
     }

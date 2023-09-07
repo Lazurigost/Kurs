@@ -41,6 +41,10 @@ namespace Oleg_LessonDiary.Services
                 {
                     Global.teacher = user.Teacher;
                 }
+                else
+                {
+                    Global.userAdm = user;
+                }
 
                 return true;
             }

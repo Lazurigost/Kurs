@@ -99,10 +99,5 @@ namespace Oleg_LessonDiary.ViewModels
         {
             _pageService.ChangePage(new MyProfilePage());
         }
-        [RelayCommand]
-        private void GoToAddNewKurs()
-        {
-            _pageService.ChangePage(new AddKursPage());
-        }
     }
 }

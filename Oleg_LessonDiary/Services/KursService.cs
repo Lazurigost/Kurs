@@ -65,5 +65,29 @@ namespace Oleg_LessonDiary.Services
                 await _newlearnContext.SaveChangesAsync();
             }
         }
+        public async void ChangeKurs(Kur kurs)
+        {
+            Kur newKurs = await _newlearnContext.Kurs.Where(k => k.IdKurs == kurs.IdKurs).FirstOrDefaultAsync();
+            if(newKurs != null)
+            {
+                newKurs.KursDuration = kurs.KursDuration;
+                newKurs.KursStartDate = kurs.KursStartDate;
+                newKurs.KursName = kurs.KursName;
+                newKurs.KursIdGuitar = kurs.KursIdGuitar;
+
+                await _newlearnContext.SaveChangesAsync();
+            }
+            
+        }
+        public async void DeleteKurs(Kur kurs)
+        {
+            Kur? kur = await _newlearnContext.Kurs.Where(k => k.IdKurs == kurs.IdKurs).SingleOrDefaultAsync();
+
+            if (kur != null)
+            {
+                _newlearnContext.Remove(kur);
+                _newlearnContext.SaveChangesAsync();
+            }
+        }
     }
 }

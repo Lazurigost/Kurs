@@ -1,0 +1,92 @@
+﻿<Page x:Class="Oleg_LessonDiary.Views.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Oleg_LessonDiary.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage"
+      xmlns:UserControl="clr-namespace:Oleg_LessonDiary.Views.UserControls"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      DataContext="{Binding AdminPageViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid>
+        <UserControl:AuthorizedUserControl HorizontalAlignment="Right"
+                                           VerticalAlignment="Top"
+                                           Margin="5,10,5,5"
+                                           x:Name="uc"
+                                           Grid.Column="1"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="{Binding ActualWidth, ElementName=uc}"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView Grid.Row="1"
+                      ItemsSource="{Binding KursList}"
+                      SelectedItem="{Binding SelectedKurs}"
+                      Height="auto"
+                      VerticalAlignment="Center">
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"
+                               MaxWidth="{Binding ActualWidth, ElementName=ColumnWidth, Mode=OneWay}"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10,10"
+                            BorderThickness="3"
+                            Padding="10,0"
+                            MaxWidth="250"
+                            MinWidth="100"
+                            BorderBrush="LightGoldenrodYellow">
+                            <StackPanel>
+                                <TextBlock Text="{Binding KursName}"
+                                      HorizontalAlignment="Center"/>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="Используемая гитара: "/>
+                                    <TextBlock Text="{Binding KursIdGuitarNavigation.GuitarName}"/>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="Продолжительность: "/>
+                                    <TextBlock Text="{Binding KursDuration}"/>
+                                    <TextBlock Text=" Месяцев"/>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="Дата начала: "/>
+                                    <TextBlock Text="{Binding KursStartDate}"/>
+                                </WrapPanel>
+                                <Button Content="Изменить курс"
+                                        Command="{Binding DataContext.ChangeKursCommand, RelativeSource={RelativeSource AncestorType=local:AdminPage}}"/>
+                                <Button Content="Удалить курс"
+                                        Command="{Binding DataContext.DeleteKursCommand, RelativeSource={RelativeSource AncestorType=local:AdminPage}}"/>
+
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,30"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}"
+                    Command="{Binding AddKursCommand}">
+                <materialDesign:PackIcon
+                Kind="Add" />
+                
+            </Button>
+
+        </Grid>
+       
+        
+        
+        
+    </Grid>
+</Page>

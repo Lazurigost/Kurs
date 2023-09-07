@@ -100,15 +100,20 @@ namespace Oleg_LessonDiary.ViewModels
         {
             if (SelectedUserPlan != null)
             {
-                _subscriptionService.Unsubscribe(selectedUserPlan.IdLearnPlan);
+                _subscriptionService.Unsubscribe(SelectedUserPlan.IdLearnPlan);
+
+                MessageBox.Show($"Вы отписались от курса {SelectedUserPlan.LearnPlanIdKursNavigation.KursName}");
             }
             Update();
         }
         [RelayCommand]
         private void GoToAboutPage()
         {
-            Global.lplan = SelectedTeachPlan;
-            _pageService.ChangePage(new AboutPlanPage());
+            if (SelectedTeachPlan != null)
+            {
+                Global.lplan = SelectedTeachPlan;
+                _pageService.ChangePage(new AboutPlanPage());
+            }        
         }
         [RelayCommand]
         private void Print()

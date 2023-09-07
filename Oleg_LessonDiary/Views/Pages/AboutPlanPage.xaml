@@ -39,24 +39,24 @@
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Left"
                    Margin="20,0,0,30">
-            <TextBlock Text="{Binding GitarName, StringFormat=Используемая гитара: {0}}"/>
+            <TextBlock Text="{Binding GuitarName, StringFormat=Используемая гитара: {0}}"/>
         </WrapPanel>
         <WrapPanel Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   Margin="20,0,150,30">
-            <TextBlock Text="{Binding KursDuration, StringFormat=Название курса: {0}}"/>
+                   Margin="20,0,0,30">
+            <TextBlock Text="{Binding KursDuration, StringFormat=Продолжительность курса: {0}}"/>
         </WrapPanel>
         <WrapPanel Grid.Column="1"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
-                   Margin="20,0,150,30">
+                   Margin="20,0,0,30">
             <TextBlock Text="{Binding StartDate, StringFormat=Дата начала: {0}}"/>
         </WrapPanel>
         <WrapPanel Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   Margin="170,30,0,0">
+                   Margin="300,30,0,0">
             <TextBlock Text="{Binding Restriction, StringFormat=Записано: {0}}"/>
             <TextBlock Text="{Binding EndRestriction, StringFormat=/{0}}"/>
         </WrapPanel>
@@ -81,5 +81,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Content="Печать"
+                Command="{Binding PrintTeacherCommand}"/>
     </Grid>
 </Page>

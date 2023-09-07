@@ -33,14 +33,24 @@
             {
                 if (await _userService.Authorization(userLogin, usersPassword))
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    if (Global.userAdm == null)
                     {
-                        _pageService.ChangePage(new PostAuthPage());
-                    });
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            _pageService.ChangePage(new PostAuthPage());
+                        });
+                    }
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            _pageService.ChangePage(new AdminPage());
+                        });
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Поражение");
+                    MessageBox.Show("Проверьте данные и повторите попытку.");
                 }
             });
         }

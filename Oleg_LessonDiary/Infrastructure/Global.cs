@@ -9,8 +9,10 @@ namespace Oleg_LessonDiary.Infrastructure
 {
     public static class Global
     {
-        public static UserModel user { get; set; } = null;
+        public static UserModel? user { get; set; } = null;
         public static Teacher? teacher { get; set; } = null;
         public static Lplan? lplan { get; set; } = null;
+        public static User? userAdm { get; set; } = null;
+        public static Kur? kurs { get; set; } = null;
     }
 }

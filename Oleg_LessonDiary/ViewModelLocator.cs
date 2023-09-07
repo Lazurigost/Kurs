@@ -32,6 +32,8 @@
             services.AddTransient<EditProfilePageViewModel>();
             services.AddTransient<AddKursPageViewModel>();
             services.AddTransient<AboutPlanPageViewModel>();
+            services.AddTransient<AdminPageViewModel>();
+            services.AddTransient<ChangeKursPageViewModel>();
             #endregion
             
             #region Contexts
@@ -62,5 +64,7 @@
         public EditProfilePageViewModel EditProfilePageViewModel => _provider.GetRequiredService<EditProfilePageViewModel>();
         public AddKursPageViewModel AddKursPageViewModel => _provider.GetRequiredService<AddKursPageViewModel>();
         public AboutPlanPageViewModel AboutPlanPageViewModel => _provider.GetRequiredService<AboutPlanPageViewModel>();
+        public AdminPageViewModel AdminPageViewModel => _provider.GetRequiredService<AdminPageViewModel>();
+        public ChangeKursPageViewModel ChangeKursPageViewModel => _provider.GetRequiredService<ChangeKursPageViewModel>();
     }
 }
